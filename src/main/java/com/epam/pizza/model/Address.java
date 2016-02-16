@@ -1,8 +1,5 @@
 package com.epam.pizza.model;
 
-/**
- * Created by advirtys on 16.02.16.
- */
 public class Address {
     private String addressee;
     private String street;

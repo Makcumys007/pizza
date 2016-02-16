@@ -3,15 +3,12 @@ package com.epam.pizza.factory;
 import com.epam.pizza.model.Address;
 import com.epam.pizza.model.Group;
 import com.epam.pizza.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by advirtys on 16.02.16.
- */
+
 public class FactoryUser {
-    private List<User> getUsers() {
+    private static List<User> getUsers() {
         List<User> users = new ArrayList<User>();
             User user = new User(Group.Guest);
             users.add(user);
@@ -52,7 +49,7 @@ public class FactoryUser {
         return users;
     }
 
-    public User getUserById(int id) {
+    public static User getUserById(int id) {
         User user = new User();
         for (int i = 0; i < getUsers().size(); i++) {
             if (id == getUsers().get(i).getId()) {

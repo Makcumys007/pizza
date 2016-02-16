@@ -1,17 +1,14 @@
 package com.epam.pizza.model;
 
 import org.joda.money.Money;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by advirtys on 16.02.16.
- */
 public class Order extends BaseEntity{
+
     private User user;
     private List<Pizza> pizzas;
-    private Money price;
+    private Money price = Money.parse("KZT 0.00");
 
     public Order() {
         if (pizzas == null) {
@@ -19,7 +16,15 @@ public class Order extends BaseEntity{
         }
     }
 
+    public Order(User user) {
+        this.user = user;
+        if (pizzas == null) {
+            pizzas = new ArrayList<Pizza>();
+        }
+    }
+
     public boolean add(Pizza pizza) {
+        price = price.plus(pizza.getMoney());
         return pizzas.add(pizza);
     }
 
@@ -29,5 +34,19 @@ public class Order extends BaseEntity{
         }
     }
 
+    public int getCount() {
+        return pizzas.size();
+    }
 
+    public Money getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Order" +
+                " user=" + user.getLogin() +
+                " count=" + getCount() +
+                " price=" + getPrice();
+    }
 }

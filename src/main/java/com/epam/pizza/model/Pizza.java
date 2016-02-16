@@ -2,7 +2,6 @@ package com.epam.pizza.model;
 
 import org.joda.money.Money;
 
-
 public class Pizza extends BaseEntity {
     private String title;
     private String description;
