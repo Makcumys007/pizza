@@ -31,4 +31,12 @@ public class Pizza extends BaseEntity {
     public void setMoney(Money money) {
         this.money = money;
     }
+
+    @Override
+    public String toString() {
+        return "Pizza title=" + title +
+                ", description=" + description +
+                ", money=" + money.getAmount().toString()
+                ;
+    }
 }
