@@ -2,7 +2,7 @@ package com.epam.pizza.model;
 
 import org.joda.money.Money;
 
-public class Pizza extends BaseEntity {
+public class Product extends BaseEntity {
     private String title;
     private String description;
     private Money price;
@@ -33,7 +33,7 @@ public class Pizza extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Pizza title=" + title +
+        return "Product title=" + title +
                 ", description=" + description +
                 ", price=" + price.getAmount().toString()
                 ;

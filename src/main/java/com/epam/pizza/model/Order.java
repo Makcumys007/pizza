@@ -7,37 +7,37 @@ import java.util.List;
 public class Order extends BaseEntity{
 
     private User user;
-    private List<Pizza> pizzas;
+    private List<Product> products;
     private Address address;
     private Money price = Money.parse("KZT 0.00");
 
     public Order() {
-        if (pizzas == null) {
-            pizzas = new ArrayList<>();
+        if (products == null) {
+            products = new ArrayList<>();
         }
     }
 
     public Order(User user) {
         this.user = user;
-        if (pizzas == null) {
-            pizzas = new ArrayList<>();
+        if (products == null) {
+            products = new ArrayList<>();
         }
     }
 
-    public boolean add(Pizza pizza) {
-        price = price.plus(pizza.getPrice());
-        return pizzas.add(pizza);
+    public boolean add(Product product) {
+        price = price.plus(product.getPrice());
+        return products.add(product);
     }
 
     public void remove() {
-        if (pizzas != null) {
+        if (products != null) {
             price = Money.parse("KZT 0.00");
-            pizzas = new ArrayList<>();
+            products = new ArrayList<>();
         }
     }
 
     public int getCount() {
-        return pizzas.size();
+        return products.size();
     }
 
     public Money getPrice() {
