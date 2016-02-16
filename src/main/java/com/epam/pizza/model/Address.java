@@ -4,26 +4,17 @@ package com.epam.pizza.model;
  * Created by advirtys on 16.02.16.
  */
 public class Address {
-    private String name;
-    private String lastName;
+    private String addressee;
     private String street;
     private String houseNumber;
     private int flatNumber;
 
-    public String getName() {
-        return name;
+    public String getAddressee() {
+        return addressee;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAddressee(String addressee) {
+        this.addressee = addressee;
     }
 
     public String getStreet() {
@@ -55,7 +46,6 @@ public class Address {
         return "Address street=" + street +
                 ", houseNumber=" + houseNumber +
                 ", flatNumber=" + flatNumber +
-                ", name=" + name +
-                ", lastname=" + lastName;
+                ", addressee=" + addressee;
     }
 }

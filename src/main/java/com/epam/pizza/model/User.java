@@ -4,6 +4,7 @@ package com.epam.pizza.model;
  * Created by advirtys on 16.02.16.
  */
 public class User extends BaseEntity{
+    private Group group;
     private String login;
     private String password;
     private String email;
@@ -12,8 +13,16 @@ public class User extends BaseEntity{
     public User() {
     }
 
-    public User(Address address) {
-        this.address = address;
+    public User(Group group) {
+        this.group = group;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public String getLogin() {

@@ -7,13 +7,12 @@ public class AddressTest {
     @Test
     public void testAddress() {
         Address address = new Address();
-        address.setName("Max");
-        address.setLastName("Abylkassov");
+        address.setAddressee("Abylkassov M");
         address.setStreet("Republic");
         address.setHouseNumber("18/2");
         address.setFlatNumber(8);
 
         assertEquals("Address street=Republic, houseNumber=18/2," +
-                " flatNumber=8, name=Max, lastname=Abylkassov", address.toString());
+                " flatNumber=8, addressee=Abylkassov M", address.toString());
     }
 }
