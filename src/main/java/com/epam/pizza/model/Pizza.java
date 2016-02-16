@@ -5,7 +5,7 @@ import org.joda.money.Money;
 public class Pizza extends BaseEntity {
     private String title;
     private String description;
-    private Money money;
+    private Money price;
 
     public String getTitle() {
         return title;
@@ -23,19 +23,19 @@ public class Pizza extends BaseEntity {
         this.description = description;
     }
 
-    public Money getMoney() {
-        return money;
+    public Money getPrice() {
+        return price;
     }
 
-    public void setMoney(Money money) {
-        this.money = money;
+    public void setPrice(Money price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
         return "Pizza title=" + title +
                 ", description=" + description +
-                ", money=" + money.getAmount().toString()
+                ", price=" + price.getAmount().toString()
                 ;
     }
 }

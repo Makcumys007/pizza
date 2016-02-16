@@ -14,7 +14,7 @@ public class FactoryPizza {
             pizza.setTitle("Viennese");
             pizza.setDescription("помидоры, сыр моцарелла," +
                     " немецкие сосиски, орегано, масло");
-            pizza.setMoney(Money.parse("KZT 1500"));
+            pizza.setPrice(Money.parse("KZT 1500"));
             pizzas.add(pizza);
 
             pizza = new Pizza();
@@ -22,7 +22,7 @@ public class FactoryPizza {
             pizza.setTitle("Сapricciosa");
             pizza.setDescription("сыр моцарелла, томаты, грибы, артишоки," +
                     " (иногда ветчина), зелёные и чёрные оливки, масло");
-            pizza.setMoney(Money.parse("KZT 1500"));
+            pizza.setPrice(Money.parse("KZT 1500"));
             pizzas.add(pizza);
 
             pizza = new Pizza();
@@ -30,21 +30,21 @@ public class FactoryPizza {
             pizza.setTitle("Diabola");
             pizza.setDescription("острая пицца с большим количеством" +
                     " пепперони и другими ингредиентами");
-            pizza.setMoney(Money.parse("KZT 1500"));
+            pizza.setPrice(Money.parse("KZT 1500"));
             pizzas.add(pizza);
 
             pizza = new Pizza();
             pizza.setId(4);
             pizza.setTitle("Primavera");
             pizza.setDescription("томатный соус, моцарелла, оливковое масло, орегано");
-            pizza.setMoney(Money.parse("KZT 1500"));
+            pizza.setPrice(Money.parse("KZT 1500"));
             pizzas.add(pizza);
 
             pizza = new Pizza();
             pizza.setId(5);
             pizza.setTitle("Hawaii");
             pizza.setDescription("с ветчиной и ананасом");
-            pizza.setMoney(Money.parse("KZT 1500"));
+            pizza.setPrice(Money.parse("KZT 1500"));
             pizzas.add(pizza);
 
         return pizzas;

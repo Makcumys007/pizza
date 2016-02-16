@@ -8,29 +8,31 @@ public class Order extends BaseEntity{
 
     private User user;
     private List<Pizza> pizzas;
+    private Address address;
     private Money price = Money.parse("KZT 0.00");
 
     public Order() {
         if (pizzas == null) {
-            pizzas = new ArrayList<Pizza>();
+            pizzas = new ArrayList<>();
         }
     }
 
     public Order(User user) {
         this.user = user;
         if (pizzas == null) {
-            pizzas = new ArrayList<Pizza>();
+            pizzas = new ArrayList<>();
         }
     }
 
     public boolean add(Pizza pizza) {
-        price = price.plus(pizza.getMoney());
+        price = price.plus(pizza.getPrice());
         return pizzas.add(pizza);
     }
 
     public void remove() {
         if (pizzas != null) {
-            pizzas = new ArrayList<Pizza>();
+            price = Money.parse("KZT 0.00");
+            pizzas = new ArrayList<>();
         }
     }
 
@@ -42,11 +44,22 @@ public class Order extends BaseEntity{
         return price;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Order" +
-                " user=" + user.getLogin() +
+                " addressee=" + address.getAddressee() +
                 " count=" + getCount() +
-                " price=" + getPrice();
+                " price=" + getPrice() +
+                " address=" + address.getStreet() +
+                " h=" + address.getHouseNumber() +
+                " f=" + address.getFlatNumber();
     }
 }

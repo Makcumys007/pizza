@@ -1,6 +1,6 @@
 package com.epam.pizza.model;
 
-public enum  Group {
+public enum Role {
     Admin,
     User,
     Guest

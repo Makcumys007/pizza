@@ -1,24 +1,24 @@
 package com.epam.pizza.model;
 
 public class User extends BaseEntity{
-    private Group group;
+    private Role group;
     private String login;
     private String password;
     private String email;
-    private Address address;
+
 
     public User() {
     }
 
-    public User(Group group) {
+    public User(Role group) {
         this.group = group;
     }
 
-    public Group getGroup() {
+    public Role getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(Role group) {
         this.group = group;
     }
 
@@ -46,11 +46,4 @@ public class User extends BaseEntity{
         this.email = email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
