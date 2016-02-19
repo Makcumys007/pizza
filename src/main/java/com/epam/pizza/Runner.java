@@ -27,6 +27,7 @@ public class Runner {
         add(pizza);
         add(beer);
         remove();
+
     }
 
     public static void add(Product value) {

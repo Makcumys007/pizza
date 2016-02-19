@@ -2,42 +2,46 @@ package com.epam.pizza.model;
 
 import org.joda.money.Money;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Order extends BaseEntity{
 
     private User user;
-    private List<Product> products;
+    private Map<Product, Integer> products;
     private Address address;
     private Money price = Money.parse("KZT 0.00");
 
     public Order() {
         if (products == null) {
-            products = new ArrayList<>();
+            products = new HashMap<>();
         }
     }
 
     public Order(User user) {
         this.user = user;
         if (products == null) {
-            products = new ArrayList<>();
+            products = new HashMap<>();
         }
     }
 
-    public boolean add(Product product) {
+    public void add(Product product) {
         price = price.plus(product.getPrice());
-        return products.add(product);
+        if (!products.containsKey(product)){
+             products.put(product, 1);
+        } else {
+            int count = products.get(product);
+            count += 1;
+            products.put(product, count);
+        }
     }
 
     public void remove() {
         if (products != null) {
             price = Money.parse("KZT 0.00");
-            products = new ArrayList<>();
+            products.clear();
         }
-    }
-
-    public int getCount() {
-        return products.size();
     }
 
     public Money getPrice() {
@@ -54,12 +58,17 @@ public class Order extends BaseEntity{
 
     @Override
     public String toString() {
-        return "Order" +
-                " addressee=" + address.getAddressee() +
-                " count=" + getCount() +
-                " price=" + getPrice() +
-                " address=" + address.getStreet() +
-                " h=" + address.getHouseNumber() +
-                " f=" + address.getFlatNumber();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Пользователь: ");
+        sb.append(address.getAddressee());
+        sb.append(" заказал: \n");
+        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+            Product product = entry.getKey();
+            Integer count = entry.getValue();
+            sb.append(product.getTitle() + " " + count + "\n");
+        }
+        sb.append("На сумму: ");
+        sb.append(getPrice());
+        return sb.toString();
     }
 }
