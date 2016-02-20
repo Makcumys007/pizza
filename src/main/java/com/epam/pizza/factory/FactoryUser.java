@@ -10,6 +10,7 @@ public class FactoryUser {
     private static List<User> getUsers() {
         List<User> users = new ArrayList<User>();
             User user = new User(Role.Guest);
+            user.setId(0);
             users.add(user);
 
             user = new User(Role.User);
@@ -36,10 +37,10 @@ public class FactoryUser {
         return users;
     }
 
-    public static User getUserById(int id) {
+    public static User getUserById(Integer id) {
         User user = new User();
         for (int i = 0; i < getUsers().size(); i++) {
-            if (id == getUsers().get(i).getId()) {
+            if (id.equals(getUsers().get(i).getId())) {
                 user = getUsers().get(i);
             }
         }

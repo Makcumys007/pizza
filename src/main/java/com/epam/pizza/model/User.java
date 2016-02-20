@@ -27,6 +27,7 @@ public class User extends BaseEntity{
     }
 
     public void setLogin(String login) {
+        isNull(login);
         this.login = login;
     }
 
@@ -35,6 +36,7 @@ public class User extends BaseEntity{
     }
 
     public void setPassword(String password) {
+        isNull(password);
         this.password = password;
     }
 
@@ -43,7 +45,10 @@ public class User extends BaseEntity{
     }
 
     public void setEmail(String email) {
+        isNull(email);
         this.email = email;
     }
+
+
 
 }

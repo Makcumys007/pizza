@@ -12,6 +12,7 @@ public class Product extends BaseEntity {
     }
 
     public void setTitle(String title) {
+        isNull(title);
         this.title = title;
     }
 
@@ -20,6 +21,7 @@ public class Product extends BaseEntity {
     }
 
     public void setDescription(String description) {
+        isNull(description);
         this.description = description;
     }
 
@@ -28,6 +30,7 @@ public class Product extends BaseEntity {
     }
 
     public void setPrice(Money price) {
+        isNull(price);
         this.price = price;
     }
 

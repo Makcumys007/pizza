@@ -1,7 +1,7 @@
 package com.epam.pizza.model;
 
 public class BaseEntity {
-    private int id;
+    private Integer id;
 
     public int getId() {
         return id;
@@ -11,6 +11,13 @@ public class BaseEntity {
         this.id = id;
     }
 
+    public boolean isNull(Object val) {
+        if (val != null) {
+            return true;
+        }
+        throw new NullPointerException("Not Null!");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -18,12 +25,12 @@ public class BaseEntity {
 
         BaseEntity that = (BaseEntity) o;
 
-        return id == that.id;
+        return id != null ? id.equals(that.id) : that.id == null;
 
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return id != null ? id.hashCode() : 0;
     }
 }

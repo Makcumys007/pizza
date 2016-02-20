@@ -1,6 +1,6 @@
 package com.epam.pizza.model;
 
-public class Address {
+public class Address extends BaseEntity {
     private String addressee;
     private String street;
     private String houseNumber;
@@ -11,6 +11,7 @@ public class Address {
     }
 
     public void setAddressee(String addressee) {
+        isNull(addressee);
         this.addressee = addressee;
     }
 
@@ -19,6 +20,7 @@ public class Address {
     }
 
     public void setStreet(String street) {
+        isNull(street);
         this.street = street;
     }
 
@@ -27,6 +29,7 @@ public class Address {
     }
 
     public void setHouseNumber(String houseNumber) {
+        isNull(houseNumber);
         this.houseNumber = houseNumber;
     }
 
@@ -35,6 +38,7 @@ public class Address {
     }
 
     public void setFlatNumber(int flatNumber) {
+        isNull(flatNumber);
         this.flatNumber = flatNumber;
     }
 
