@@ -68,7 +68,7 @@ public class Order extends BaseEntity{
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             Product product = entry.getKey();
             Integer count = entry.getValue();
-            sb.append(product.getTitle() + " " + count + "\n");
+            sb.append("Товар: " + product.getTitle() + " количество: " + count + "\n");
         }
         sb.append("На сумму: ");
         sb.append(getPrice());
