@@ -154,6 +154,61 @@ body {
 	width: 1000px;
 }
 
+.product {
+	width: 260px;
+}
+
+.product img {
+	margin-left: 20px;
+}
+
+.product h2 {
+	font: 20px Georgia;
+	color: #EA8634;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.price {
+	font: 16px Georgia;
+	color: #292929;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.desc {
+	font: 16px Georgia;
+	color: #727272;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.desc span {
+	font: 13px Georgia;
+	position: relative;
+	top: 3px;
+}
+
+.desc2 {
+	font: 14px Georgia;
+	color: #727272;
+	text-align: center;
+	margin-top: 5px;
+}
+
+
+.product input {
+	position: relative;
+	left: 50px;
+	margin-top: 10px;
+	width: 150px;
+	height: 30px;
+	font: 16px Georgia;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	background-color: #93C243;
+	border: 1px solid #FFFFFF;
+}
 
 /* Footer
 -----------------------------------------------------------------------------*/
