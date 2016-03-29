@@ -6,17 +6,9 @@
     <link type="text/css" href="css/style.css">
 </head>
 <body>
-<h1>Добро пожалова на страницу со статьями!</h1>
+<h1>Добро пожалова!</h1>
 
 
-
-<c:forEach var="post" items="${posts}">
-    <div id="post">
-        <h3>${post.title}</h3>
-        <p>${post.description}</p>
-        <h6>Автор: ${post.author} <span><a href="${pageContext.request.contextPath}/do/post?id=${post.id}">читать далее...</a></span></h6>
-    </div>
-</c:forEach>
 
 </body>
 </html>
