@@ -6,6 +6,8 @@ public class Product extends BaseEntity {
     private String title;
     private String description;
     private Money price;
+    private Type type;
+    private String img;
 
     public String getTitle() {
         return title;
@@ -34,6 +36,22 @@ public class Product extends BaseEntity {
         this.price = price;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,11 +75,8 @@ public class Product extends BaseEntity {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Product title=" + title +
-                ", description=" + description +
-                ", price=" + price.getAmount().toString()
-                ;
+    public static enum  Type {
+        PIZZA, SUSHI, DRINK;
     }
+
 }

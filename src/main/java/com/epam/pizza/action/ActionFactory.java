@@ -10,7 +10,7 @@ public class ActionFactory {
 
     public ActionFactory() {
         actions = new HashMap<>();
-        actions.put("GET/", new ShowPageAction("home"));
+        actions.put("GET/", new HomeAction("home"));
 
     }
 

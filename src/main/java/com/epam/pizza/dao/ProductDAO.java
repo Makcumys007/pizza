@@ -27,6 +27,8 @@ public class ProductDAO implements EntityDAO<Product> {
                 product.setTitle(rs.getString("title"));
                 product.setDescription(rs.getString("description"));
                 product.setPrice(Money.parse(rs.getString("price")));
+                product.setImg(rs.getString("img"));
+                product.setType(Product.Type.valueOf(rs.getString("type")));
                 products.add(product);
             }
 

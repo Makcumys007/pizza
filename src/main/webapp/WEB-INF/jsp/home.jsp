@@ -46,17 +46,20 @@
     <main class="content">
         <h1 class="h1_title">Пицца:</h1>
         <br>
+<c:forEach var="product" items="products">
+    <div class="product">
+        <img width="218" height="218" src="${product.img}">
+        <h2>Пицца "${product.title}"</h2>
+        <p class="price">Цена: ${product.price} тг</p>
+        <p class="desc"><span>*** </span>Состав<span> ***</span></p>
+        <p class="desc2">${product.description}</p>
+        <form action="/do/basket">
+            <input type="hidden" name="id" value="${product.id}">
+            <input type="submit" value="В корзину">
+        </form>
+    </div>
+</c:forEach>
 
-        <div class="product">
-            <img src="img_tmp/pepperoni__small.png">
-            <h2>Пицца "Пеперони"</h2>
-            <p class="price">Цена: 1200 тг</p>
-            <p class="desc"><span>*** </span>Состав<span> ***</span></p>
-            <p class="desc2">Салями, болгарский перец, сыр Моцарелла, пицца-соус, маслины...</p>
-            <form>
-                <input type="submit" value="В корзину">
-            </form>
-        </div>
         <br>
     </main><!-- .content -->
 
