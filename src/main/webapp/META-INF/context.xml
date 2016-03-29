@@ -1,14 +1,14 @@
-<context>
+<Context path="/">
     <Resource
-            name="jdbc/pizza"
+            name="jdbc/blog"
             auth="Container"
             type="javax.sql.DataSource"
             maxActive="100"
             maxIdle="30"
             maxWait="10000"
             username="user"
-            password="pass"
+            password="123"
             driverClassName="com.mysql.jdbc.Driver"
-            url="jdbc:mysql://localhost:3306/testdb"
+            url="jdbc:mysql://localhost:3306/blog"
     />
-</context>
+</Context>
