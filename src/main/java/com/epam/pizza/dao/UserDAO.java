@@ -23,7 +23,9 @@ public class UserDAO implements EntityDAO<User> {
 
     @Override
     public int insertEntity(User user) {
-
+        System.out.println(user.getLogin());
+        System.out.println(user.getPassword());
+        System.out.println(user.getEmail());
         return 0;
     }
 

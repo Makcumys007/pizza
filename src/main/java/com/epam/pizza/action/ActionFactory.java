@@ -14,7 +14,7 @@ public class ActionFactory {
         actions.put("GET/contacts", new ShowPageAction("contacts"));
         actions.put("GET/product", new ProductAction("product"));
         actions.put("GET/register", new ShowPageAction("register"));
-        actions.put("POST/register", new RegisterAction("home"));
+        actions.put("POST/register", new RegisterAction("/do/"));
 
     }
 

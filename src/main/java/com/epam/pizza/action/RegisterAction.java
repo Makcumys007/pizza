@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterAction implements Action {
     private ActionResult register;
     public RegisterAction(String page) {
-        register = new ActionResult(page);
+        register = new ActionResult(page, true);
     }
 
     @Override
