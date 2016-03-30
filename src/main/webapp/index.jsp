@@ -6,6 +6,5 @@
   <body>
 
 <jsp:forward page="/do/" />
-
   </body>
 </html>

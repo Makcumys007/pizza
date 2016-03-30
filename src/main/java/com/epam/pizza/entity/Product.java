@@ -31,6 +31,10 @@ public class Product extends BaseEntity {
         return price;
     }
 
+    public String getPrice0() {
+        return price.getAmount().toString();
+    }
+
     public void setPrice(Money price) {
         isNull(price);
         this.price = price;

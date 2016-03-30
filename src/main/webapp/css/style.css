@@ -153,7 +153,6 @@ body {
 }
 
 .h1_title {
-	margin-top: 10px;
 	padding-bottom: 10px;
 	font: 24px Georgia;
 	border-bottom: 1px solid #D6D6D6;
@@ -161,8 +160,12 @@ body {
 	width: 1000px;
 }
 
+/* Product
+--------------------------------------------------------------------------------*/
+
 .product {
-	width: 260px;
+	float: left;
+	width: 250px;
 }
 
 .product img {
@@ -199,15 +202,16 @@ body {
 .desc2 {
 	font: 14px Georgia;
 	color: #727272;
+	height: 100px;
 	text-align: center;
 	margin-top: 5px;
 }
-
 
 .product input {
 	position: relative;
 	left: 50px;
 	margin-top: 10px;
+	margin-bottom: 20px;
 	width: 150px;
 	height: 30px;
 	font: 16px Georgia;
@@ -217,9 +221,39 @@ body {
 	border: 1px solid #FFFFFF;
 }
 
-/* Footer
+.product_bloc {
+	height: 500px;
+	clear: left;
+}
+
+
+/* Contacts
 -----------------------------------------------------------------------------*/
+
+.contacts {
+
+}
+
+.contacts p {
+	font: 16px Georgia;
+	line-height: 1.5;
+	color: #727272;
+}
+
+.contacts .blue {
+	font: 18px Georgia;
+	color: #344C54;
+}
+
+.contacts .blue2 {
+	font: 14px Georgia;
+	color: #344C54;
+}
+
+	/* Footer
+    -----------------------------------------------------------------------------*/
 .footer {
+	clear: left;
 	width: 1000px;
 	margin: -100px auto 0;
 	height: 100px;

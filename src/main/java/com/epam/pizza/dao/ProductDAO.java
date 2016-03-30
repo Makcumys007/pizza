@@ -14,10 +14,11 @@ import java.util.List;
 public class ProductDAO implements EntityDAO<Product> {
     private String SELECT_ALL_PRODUCT = "SELECT * FROM product";
 
+    private Connection connection = PizzaConnection.getConnection();
+
     @Override
     public List<Product> selectAll() {
         List<Product> products = new ArrayList<>();
-        Connection connection = PizzaConnection.getConnection();
 
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(SELECT_ALL_PRODUCT)) {
@@ -26,7 +27,7 @@ public class ProductDAO implements EntityDAO<Product> {
                 product.setId(rs.getInt("id"));
                 product.setTitle(rs.getString("title"));
                 product.setDescription(rs.getString("description"));
-                product.setPrice(Money.parse(rs.getString("price")));
+                product.setPrice(Money.parse("KZT "+ rs.getString("price")));
                 product.setImg(rs.getString("img"));
                 product.setType(Product.Type.valueOf(rs.getString("type")));
                 products.add(product);
@@ -34,7 +35,21 @@ public class ProductDAO implements EntityDAO<Product> {
 
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.close(connection);
         }
         return products;
+    }
+
+    @Override
+    public Product selectById(int id) {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public int insertEntity(Product product) {
+        // TODO
+        return 0;
     }
 }

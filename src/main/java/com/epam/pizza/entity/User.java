@@ -1,7 +1,7 @@
 package com.epam.pizza.entity;
 
 public class User extends BaseEntity{
-    private Role group;
+    private String role;
     private String login;
     private String password;
     private String email;
@@ -10,16 +10,16 @@ public class User extends BaseEntity{
     public User() {
     }
 
-    public User(Role group) {
-        this.group = group;
+    public User(String role) {
+        this.role = role;
     }
 
-    public Role getGroup() {
-        return group;
+    public String getRole() {
+        return role;
     }
 
-    public void setGroup(Role group) {
-        this.group = group;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getLogin() {
