@@ -28,6 +28,7 @@
     <mtf:message key="slogan_footer" var="sloganFooter" />
     <mtf:message key="marka" var="marka_title" />
 
+    <mtf:message key="register_validate" var="registerValidate" />
 
 
 </mtf:bundle>
@@ -67,7 +68,7 @@
         <br>
 
         <c:if test="${validate}" >
-            <p>Не правильно ввели данные! Попробуйте снова!</p>
+            <p class="validate_r">${registerValidate}</p>
         </c:if>
 
         <form action="/do/register" method="POST">
