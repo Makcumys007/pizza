@@ -2,6 +2,8 @@ package com.epam.pizza.action;
 
 import com.epam.pizza.dao.UserDAO;
 import com.epam.pizza.entity.User;
+import com.epam.pizza.service.UserService;
+import com.epam.pizza.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,15 +16,17 @@ public class RegisterAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        User user = new User();
 
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        String email = req.getParameter("email");
+        UserService userService = new UserService(req);
+        User user;
+        try {
+            user = userService.getRegisteringUser();
+        } catch (ServiceException e) {
+            // TODO
+            req.setAttribute("validate", true);
+            return new ActionResult("register");
+        }
 
-        user.setLogin(login);
-        user.setPassword(password);
-        user.setEmail(email);
 
         UserDAO userDAO = new UserDAO();
         userDAO.insertEntity(user);

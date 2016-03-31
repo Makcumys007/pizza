@@ -2,6 +2,7 @@ package com.epam.pizza.action;
 
 import com.epam.pizza.dao.ProductDAO;
 import com.epam.pizza.entity.Product;
+import com.epam.pizza.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +26,7 @@ public class ProductAction implements Action {
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         String type = req.getParameter("type");
-        String locale = req.getSession().getAttribute("locale").toString();
+        String locale = Locale.getLocale(req);
 
         Map<String, List<Product>> mapProduct = getProductList();
         List<Product> listProduct = mapProduct.get(type);
@@ -53,6 +54,7 @@ public class ProductAction implements Action {
             return mapTitleEn.get(type);
         }
         return mapTitleRu.get(type);
+
     }
 
     private Map<String, List<Product>> getProductList() {

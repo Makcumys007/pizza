@@ -65,6 +65,11 @@
         <br>
         <h1 class="h1_title">${check_in_title}:</h1>
         <br>
+
+        <c:if test="${validate}" >
+            <p>Не правильно ввели данные! Попробуйте снова!</p>
+        </c:if>
+
         <form action="/do/register" method="POST">
             <p class="login_p">${login_title}: </p>
             <input type="text" name="login" value="" />

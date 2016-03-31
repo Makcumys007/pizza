@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
 
     private void doForwardOrRedirect(ActionResult result, HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         if (result.isRedirect()) {
-            resp.sendRedirect(result.getView() + ".jsp");
+            resp.sendRedirect(result.getView());
         } else {
             String path = "/WEB-INF/jsp/" + result.getView() + ".jsp";
             req.getRequestDispatcher(path).forward(req, resp);
