@@ -15,6 +15,7 @@ public class ActionFactory {
         actions.put("GET/product", new ProductAction("product"));
         actions.put("GET/register", new ShowPageAction("register"));
         actions.put("POST/register", new RegisterAction("/do/"));
+        actions.put("GET/locale", new LocaleAction());
 
     }
 

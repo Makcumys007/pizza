@@ -80,7 +80,19 @@ public class Product extends BaseEntity {
     }
 
     public static enum  Type {
-        PIZZA, SUSHI, DRINK;
+        PIZZA("pizza"), SUSHI("sushi"), DRINK("drink");
+
+        String name;
+        Type(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
+
+
 
 }

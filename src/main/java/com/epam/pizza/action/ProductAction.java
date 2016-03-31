@@ -25,23 +25,34 @@ public class ProductAction implements Action {
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         String type = req.getParameter("type");
+        String locale = req.getSession().getAttribute("locale").toString();
+
         Map<String, List<Product>> mapProduct = getProductList();
         List<Product> listProduct = mapProduct.get(type);
 
-        req.setAttribute("titlePage", getTitlePage(type));
+        req.setAttribute("titlePage", getTitlePage(type, locale));
         req.setAttribute("products", listProduct);
 
         return product;
     }
 
-    private String getTitlePage(String type) {
-        Map<String, String> mapTitle = new HashMap<>();
+    private String getTitlePage(String type, String locale) {
+        Map<String, String> mapTitleRu = new HashMap<>();
 
-        mapTitle.put(pizzaType.toString().toLowerCase(), "Пицца");
-        mapTitle.put(sushiType.toString().toLowerCase(), "Суши");
-        mapTitle.put(drinkType.toString().toLowerCase(), "Напитки");
+        mapTitleRu.put(pizzaType.toString(), "Пицца");
+        mapTitleRu.put(sushiType.toString(), "Суши");
+        mapTitleRu.put(drinkType.toString(), "Напитки");
 
-        return mapTitle.get(type);
+        Map<String, String> mapTitleEn = new HashMap<>();
+
+        mapTitleEn.put(pizzaType.toString(), "Pizza");
+        mapTitleEn.put(sushiType.toString(), "Sushi");
+        mapTitleEn.put(drinkType.toString(), "Drinks");
+
+        if (locale.equals("en_US")) {
+            return mapTitleEn.get(type);
+        }
+        return mapTitleRu.get(type);
     }
 
     private Map<String, List<Product>> getProductList() {
@@ -64,9 +75,9 @@ public class ProductAction implements Action {
             }
         }
 
-        mapProduct.put(pizzaType.toString().toLowerCase(), pizzas);
-        mapProduct.put(sushiType.toString().toLowerCase(), sushis);
-        mapProduct.put(drinkType.toString().toLowerCase(), drinks);
+        mapProduct.put(pizzaType.toString(), pizzas);
+        mapProduct.put(sushiType.toString(), sushis);
+        mapProduct.put(drinkType.toString(), drinks);
 
         return mapProduct;
     }

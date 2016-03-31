@@ -31,7 +31,6 @@ public class HomeAction implements Action {
             }
         }
 
-
         req.setAttribute("sushis", sushis);
         req.setAttribute("pizzas", pizzas);
         return home;
