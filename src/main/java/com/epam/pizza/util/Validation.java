@@ -1,9 +1,6 @@
 package com.epam.pizza.util;
 
 
-import com.epam.pizza.entity.User;
-import com.epam.pizza.service.exception.ServiceException;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;

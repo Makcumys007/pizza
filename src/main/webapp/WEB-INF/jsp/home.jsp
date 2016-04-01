@@ -27,7 +27,9 @@
 
     <mtf:message key="slogan_footer" var="sloganFooter" />
     <mtf:message key="marka" var="marka_title" />
+    <mtf:message key="login_in" var="login_in" />
 
+    <mtf:message key="register_validate" var="registerValidate" />
 </mtf:bundle>
 
 <h:head  title="${home_title}"/>
@@ -38,6 +40,12 @@
         <p class="slogan3">${sloganHeader2}</p></div>
     <div class="login">
         <form action="login" method="POST">
+            <c:if test="${welcome}" >
+                <p class="validate_r">${login_in}</p>
+            </c:if>
+            <c:if test="${validate}" >
+                <p class="validate_r">${registerValidate}</p>
+            </c:if>
             <p class="login_p">${login_title}:</p>
             <input type="text" name="login" />
             <p class="login_p">${password_title}:</p>

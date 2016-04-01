@@ -29,7 +29,7 @@
     <mtf:message key="marka" var="marka_title" />
 
     <mtf:message key="register_validate" var="registerValidate" />
-
+    <mtf:message key="register_validate2" var="registerValidate2" />
 
 </mtf:bundle>
 
@@ -70,7 +70,9 @@
         <c:if test="${validate}" >
             <p class="validate_r">${registerValidate}</p>
         </c:if>
-
+        <c:if test="${engaged}" >
+        <p class="validate_r">${registerValidate2}</p>
+        </c:if>
         <form action="/do/register" method="POST">
             <p class="login_p">${login_title}: </p>
             <input type="text" name="login" value="" />

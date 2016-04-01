@@ -8,24 +8,25 @@ import com.epam.pizza.service.exception.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RegisterAction implements Action {
-
+public class LoginAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         UserDAO userDAO = new UserDAO();
         UserService userService = new UserService(req);
-        User user;
         try {
-            user = userService.getRegisteringUser();
+            User loginUser = userService.getLogingUser();
+            User findUser = userDAO.findByEntity(loginUser);
+
+            if (findUser != null && loginUser.getPassword().equals(findUser.getPassword())) {
+                req.getSession().setAttribute("user", findUser);
+            }
+
         } catch (ServiceException e) {
-            // TODO
             req.setAttribute("validate", true);
-            return new ActionResult("register");
+            req.setAttribute("login", true);
+            return new HomeAction("home").execute(req, resp);
         }
-        userDAO.insertEntity(user);
-        req.setAttribute("welcome", true);
         return new HomeAction("home").execute(req, resp);
     }
 }
-

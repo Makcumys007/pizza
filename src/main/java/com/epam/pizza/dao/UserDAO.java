@@ -2,20 +2,22 @@ package com.epam.pizza.dao;
 
 import com.epam.pizza.connection.PizzaConnection;
 import com.epam.pizza.entity.User;
+import com.epam.pizza.service.exception.ServiceException;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.util.List;
 
 public class UserDAO implements EntityDAO<User> {
     private Connection connection = PizzaConnection.getConnection();
-    private final String INSERT_USER = "INSERT INTO (login, password, email) VALUES (?, ?, ?)";
+    private final String INSERT_USER = "INSERT INTO user(login, password, email, user_role) VALUES (?, ?, ?, ?)";
+    private final String FIND_USER = "select u.id, u.login, u.password, u.email, ur.role from user u inner" +
+            " join user_role ur where ur.id = u.user_role AND u.login like ?";
 
     @Override
     public List<User> selectAll() {
         //TODO
         return null;
     }
-
     @Override
     public User selectById(int id) {
         return null;
@@ -23,10 +25,50 @@ public class UserDAO implements EntityDAO<User> {
 
     @Override
     public int insertEntity(User user) {
-        System.out.println(user.getLogin());
-        System.out.println(user.getPassword());
-        System.out.println(user.getEmail());
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(INSERT_USER);
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setInt(4, 2);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeStatement(preparedStatement);
+            PizzaConnection.closeConnection(connection);
+        }
+        // TODO
         return 0;
+    }
+
+    @Override
+    public User findByEntity(User user) {
+        User result = new User();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(FIND_USER);
+            preparedStatement.setString(1, user.getLogin());
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.setId(resultSet.getInt("id"));
+                result.setLogin(resultSet.getString("login"));
+                result.setPassword(resultSet.getString("password"));
+                result.setEmail(resultSet.getString("email"));
+                result.setRole(resultSet.getString("role"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeResultSet(resultSet);
+            PizzaConnection.closeStatement(preparedStatement);
+            PizzaConnection.closeConnection(connection);
+        }
+
+        return result;
     }
 
 

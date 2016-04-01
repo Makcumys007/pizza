@@ -36,7 +36,7 @@ public class ProductDAO implements EntityDAO<Product> {
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);
         } finally {
-            PizzaConnection.close(connection);
+            PizzaConnection.closeConnection(connection);
         }
         return products;
     }
@@ -51,5 +51,10 @@ public class ProductDAO implements EntityDAO<Product> {
     public int insertEntity(Product product) {
         // TODO
         return 0;
+    }
+
+    @Override
+    public Product findByEntity(Product product) {
+        return null;
     }
 }

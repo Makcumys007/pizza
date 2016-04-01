@@ -49,6 +49,13 @@ public class User extends BaseEntity{
         this.email = email;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "role='" + role + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
