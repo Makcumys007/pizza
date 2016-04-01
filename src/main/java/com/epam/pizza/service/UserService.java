@@ -32,19 +32,24 @@ public class UserService {
                 return user;
             } else {
                 req.setAttribute("engaged", true);
-                throw new ServiceException("Such a user can not be found!");
+                throw new ServiceException("Such a user can not be created!");
             }
         } else {
             throw new ServiceException("Incorrectly entered data!");
         }
     }
 
-    public User getLogingUser() throws ServiceException {
-        User user = new User();
+    public User getLoginUser() throws ServiceException {
+        User user = (User) req.getSession(false).getAttribute("user");
         if (validation.validate()) {
             user.setLogin(req.getParameter("login"));
             user.setPassword(req.getParameter("password"));
-            return user;
+            User findUser = userDAO.findByEntity(user);
+            if(findUser != null && findUser.getPassword().equals(user.getPassword())){
+                return findUser;
+            } else {
+                throw new ServiceException("Incorrectly entered data!");
+            }
         } else {
             throw new ServiceException("Incorrectly entered data!");
         }

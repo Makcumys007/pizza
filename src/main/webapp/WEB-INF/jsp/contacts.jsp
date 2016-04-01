@@ -40,14 +40,31 @@
     <div class="slogan"><p class="slogan2">${sloganHeader1}</p>
         <p class="slogan3">${sloganHeader2}</p></div>
     <div class="login">
-        <form action="login" method="POST">
-            <p class="login_p">${login_title}:</p>
-            <input type="text" name="login" />
-            <p class="login_p">${password_title}:</p>
-            <input type="password" name="password" />
-            <br/>
-            <p class="login_p"><input type="submit" value="${enter_title}" /> <a href="${pageContext.request.contextPath}/do/register">${check_in_title}</a></p>
-        </form>
+        <c:choose>
+            <c:when test="${user.role == 'guest'}">
+                <form action="${pageContext.request.contextPath}/do/login" method="POST">
+                    <c:if test="${welcome}" >
+                        <p class="validate_r">${login_in}</p>
+                    </c:if>
+                    <c:if test="${validate}" >
+                        <p class="validate_r">${registerValidate}</p>
+                    </c:if>
+                    <p class="login_p">${login_title}:</p>
+                    <input type="text" name="login" />
+                    <p class="login_p">${password_title}:</p>
+                    <input type="password" name="password" />
+                    <br/>
+                    <p class="login_p"><input type="submit" value="${enter_title}" /> <a href="${pageContext.request.contextPath}/do/register">${check_in_title}</a></p>
+                </form>
+            </c:when>
+            <c:when test="${user.role == 'user'}">
+                Hello ${user.login}
+            </c:when>
+            <c:when test="${user.role == 'admin'}">
+                Hello ${user.login}
+            </c:when>
+        </c:choose>
+
         <h:locale />
     </div>
     <div class="nav">

@@ -2,6 +2,7 @@ package com.epam.pizza.action;
 
 import com.epam.pizza.dao.ProductDAO;
 import com.epam.pizza.entity.Product;
+import com.epam.pizza.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,9 @@ public class HomeAction implements Action {
 
         req.setAttribute("sushis", sushis);
         req.setAttribute("pizzas", pizzas);
+
+
+
         return home;
     }
 
