@@ -17,6 +17,7 @@ public class ActionFactory {
         actions.put("POST/register", new RegisterAction());
         actions.put("GET/locale", new LocaleAction());
         actions.put("POST/login", new LoginAction());
+        actions.put("GET/logout", new Logout());
 
     }
 

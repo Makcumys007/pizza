@@ -20,8 +20,6 @@ public class LoginAction implements Action {
             // TODO обработчик исключения повешай!!!
             req.setAttribute("validate", true);
         }
-
-
         return new HomeAction("home").execute(req, resp);
     }
 }

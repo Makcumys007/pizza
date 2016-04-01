@@ -12,20 +12,18 @@ public class RegisterAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        User user = (User) req.getSession(false).getAttribute("user");
 
-        if (user.getRole().equals("guest")) {
-            UserDAO userDAO = new UserDAO();
-            UserService userService = new UserService(req);
-            try {
-                user = userService.getRegisteringUser();
-            } catch (ServiceException e) {
-                req.setAttribute("validate", true);
-                return new ActionResult("register");
-            }
-            userDAO.insertEntity(user);
-            req.setAttribute("welcome", true);
+        UserDAO userDAO = new UserDAO();
+        UserService userService = new UserService(req);
+        User user;
+        try {
+            user = userService.getRegisteringUser();
+        } catch (ServiceException e) {
+            req.setAttribute("validate", true);
+            return new ActionResult("register");
         }
+        userDAO.insertEntity(user);
+        req.setAttribute("welcome", true);
         return new HomeAction("home").execute(req, resp);
     }
 }

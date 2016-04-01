@@ -64,7 +64,7 @@
                 <p class="login_p">${hello} ${user.login}!!!</p><br>
                 <a href="#">${orders}</a><br>
                 <a href="#">${settings}</a><br>
-                <a href="#">${exit}</a>
+                <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
             <c:when test="${user.role == 'admin'}">
                 Hello ${user.login}
