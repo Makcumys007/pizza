@@ -2,6 +2,7 @@ package com.epam.pizza.dao;
 
 import com.epam.pizza.connection.PizzaConnection;
 import com.epam.pizza.entity.Product;
+import com.epam.pizza.entity.User;
 import org.joda.money.Money;
 
 import java.sql.Connection;
@@ -56,5 +57,10 @@ public class ProductDAO implements EntityDAO<Product> {
     @Override
     public Product findByEntity(Product product) {
         return null;
+    }
+
+    @Override
+    public void updateEntity(User user) {
+
     }
 }

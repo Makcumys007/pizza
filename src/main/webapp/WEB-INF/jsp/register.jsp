@@ -3,9 +3,9 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="h" %>
 <%@ taglib prefix="mtf" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+${sessionScope.clear()}
 
-
-<mtf:bundle basename="header_footer">
+<mtf:bundle basename="locale">
     <mtf:message key="home" var="home_title" />
     <mtf:message key="pizza" var="pizza_title" />
     <mtf:message key="sushi" var="sushi_title" />
@@ -30,6 +30,11 @@
 
     <mtf:message key="register_validate" var="registerValidate" />
     <mtf:message key="register_validate2" var="registerValidate2" />
+
+    <mtf:message key="hello" var="hello" />
+    <mtf:message key="orders" var="orders" />
+    <mtf:message key="settings" var="settings" />
+    <mtf:message key="exit" var="exit" />
 
 </mtf:bundle>
 
@@ -58,7 +63,10 @@
                 </form>
             </c:when>
             <c:when test="${user.role == 'user'}">
-                <p>Hello ${user.login}</p>
+                <p class="login_p">${hello} ${user.login}!!!</p><br>
+                <a href="#">${orders}</a><br>
+                <a href="#">${settings}</a><br>
+                <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
             <c:when test="${user.role == 'admin'}">
                 Hello ${user.login}

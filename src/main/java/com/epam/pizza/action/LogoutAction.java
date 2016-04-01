@@ -5,7 +5,7 @@ import com.epam.pizza.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Logout implements Action {
+public class LogoutAction implements Action {
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         req.getSession(false).invalidate();

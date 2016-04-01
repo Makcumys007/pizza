@@ -45,7 +45,7 @@ public class UserService {
             user.setLogin(req.getParameter("login"));
             user.setPassword(req.getParameter("password"));
             User findUser = userDAO.findByEntity(user);
-            if(findUser != null && findUser.getPassword().equals(user.getPassword())){
+            if(findUser.getPassword() != null && findUser.getPassword().equals(user.getPassword())){
                 return findUser;
             } else {
                 throw new ServiceException("Incorrectly entered data!");
@@ -55,6 +55,18 @@ public class UserService {
         }
     }
 
+    public User getUpdateUser() throws ServiceException {
+        User user = (User) req.getSession(false).getAttribute("user");
+        if (validation.validate()) {
+            user.setEmail(req.getParameter("email"));
+            user.setPassword(req.getParameter("password"));
+            userDAO.updateEntity(user);
+
+            return user;
+        } else {
+            throw new ServiceException("Incorrectly entered data!");
+        }
+    }
 
 
 

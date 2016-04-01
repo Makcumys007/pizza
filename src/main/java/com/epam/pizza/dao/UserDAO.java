@@ -10,8 +10,10 @@ import java.util.List;
 public class UserDAO implements EntityDAO<User> {
     private Connection connection = PizzaConnection.getConnection();
     private final String INSERT_USER = "INSERT INTO user(login, password, email, user_role) VALUES (?, ?, ?, ?)";
+    private final String UPDATE_USER = "update user set password=?, email=?, user_role=(select id FROM user_role WHERE role=?) where id = ?";
     private final String FIND_USER = "select u.id, u.login, u.password, u.email, ur.role from user u inner" +
             " join user_role ur where ur.id = u.user_role AND u.login like ?";
+
 
     @Override
     public List<User> selectAll() {
@@ -69,6 +71,24 @@ public class UserDAO implements EntityDAO<User> {
         }
 
         return result;
+    }
+
+    @Override
+    public void updateEntity(User user) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(UPDATE_USER);
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getRole());
+            preparedStatement.setInt(4, user.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeStatement(preparedStatement);
+            PizzaConnection.closeConnection(connection);
+        }
     }
 
 

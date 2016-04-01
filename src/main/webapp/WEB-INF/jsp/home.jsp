@@ -5,7 +5,7 @@
 
 <mtf:setLocale value="${locale}" scope="session"/>
 
-<mtf:bundle basename="header_footer">
+<mtf:bundle basename="locale">
     <mtf:message key="home" var="home_title" />
     <mtf:message key="pizza" var="pizza_title" />
     <mtf:message key="sushi" var="sushi_title" />
@@ -43,6 +43,7 @@
     <div class="slogan"><p class="slogan2">${sloganHeader1}</p>
         <p class="slogan3">${sloganHeader2}</p></div>
     <div class="login">
+
         <c:choose>
             <c:when test="${user.role == 'guest'}">
                 <form action="${pageContext.request.contextPath}/do/login" method="POST">
@@ -63,7 +64,7 @@
             <c:when test="${user.role == 'user'}">
                 <p class="login_p">${hello} ${user.login}!!!</p><br>
                 <a href="#">${orders}</a><br>
-                <a href="#">${settings}</a><br>
+                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
                 <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
             <c:when test="${user.role == 'admin'}">

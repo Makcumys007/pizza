@@ -38,7 +38,7 @@
 
 </mtf:bundle>
 
-<h:head  title="${contacts_title}"/>
+<h:head  title="${settings}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -69,7 +69,7 @@
                 <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
             <c:when test="${user.role == 'admin'}">
-                Hello ${user.login}
+
             </c:when>
         </c:choose>
 
@@ -89,10 +89,19 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${our_contacts}:</h1>
+        <h1 class="h1_title">${settings}:</h1>
         <br>
+        <c:if test="${validate}" >
+        <p class="validate_r">${registerValidate}</p>
+        </c:if>
         <div class="contacts">
-            ${contacts_desk}
+            <form action="${pageContext.request.contextPath}/do/profile" method="post">
+                <p>Логин: </p><input type="text" value="${user.login}" disabled>
+                <p>Email: </p><input type="text" value="${user.email}" name="email">
+                <p>Новый пароль: </p><input type="password" value="${user.password}" name="password">
+                <p class="login_p"><input type="submit" value="Сохранить"></p>
+            </form>
+
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />
