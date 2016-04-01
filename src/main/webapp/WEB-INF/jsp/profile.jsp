@@ -31,10 +31,15 @@
     <mtf:message key="our_contacts" var="our_contacts" />
     <mtf:message key="contacts_desc" var="contacts_desk" />
 
+    <mtf:message key="register_validate" var="registerValidate" />
     <mtf:message key="hello" var="hello" />
     <mtf:message key="orders" var="orders" />
     <mtf:message key="settings" var="settings" />
     <mtf:message key="exit" var="exit" />
+
+    <mtf:message key="control_panel" var="control_panel" />
+    <mtf:message key="new_pass" var="new_pass" />
+    <mtf:message key="save" var="save_title" />
 
 </mtf:bundle>
 
@@ -65,11 +70,15 @@
             <c:when test="${user.role == 'user'}">
                 <p class="login_p">${hello} ${user.login}!!!</p><br>
                 <a href="#">${orders}</a><br>
-                <a href="#">${settings}</a><br>
+                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
                 <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
             <c:when test="${user.role == 'admin'}">
-
+                <p class="login_p">${hello} ${user.login}!!!</p><br>
+                <a href="#">${orders}</a><br>
+                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
+                <a href="${pageContext.request.contextPath}/do/control">${control_panel}</a><br>
+                <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
         </c:choose>
 
@@ -96,10 +105,10 @@
         </c:if>
         <div class="contacts">
             <form action="${pageContext.request.contextPath}/do/profile" method="post">
-                <p>Логин: </p><input type="text" value="${user.login}" disabled>
+                <p>${login_title}: </p><input type="text" value="${user.login}" disabled>
                 <p>Email: </p><input type="text" value="${user.email}" name="email">
-                <p>Новый пароль: </p><input type="password" value="${user.password}" name="password">
-                <p class="login_p"><input type="submit" value="Сохранить"></p>
+                <p>${new_pass}: </p><input type="password" value="${user.password}" name="password">
+                <p class="login_p"><input type="submit" value="${save_title}"></p>
             </form>
 
         </div>

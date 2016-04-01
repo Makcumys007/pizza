@@ -13,9 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO implements EntityDAO<Product> {
+    private final String locale;
     private String SELECT_ALL_PRODUCT = "SELECT * FROM product";
 
     private Connection connection = PizzaConnection.getConnection();
+
+    public ProductDAO(String locale) {
+        this.locale = locale;
+    }
 
     @Override
     public List<Product> selectAll() {
@@ -26,8 +31,8 @@ public class ProductDAO implements EntityDAO<Product> {
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("id"));
-                product.setTitle(rs.getString("title"));
-                product.setDescription(rs.getString("description"));
+                product.setTitle(rs.getString("title_" + locale));
+                product.setDescription(rs.getString("description_" + locale));
                 product.setPrice(Money.parse("KZT "+ rs.getString("price")));
                 product.setImg(rs.getString("img"));
                 product.setType(Product.Type.valueOf(rs.getString("type")));

@@ -3,6 +3,7 @@ package com.epam.pizza.action;
 import com.epam.pizza.dao.ProductDAO;
 import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
+import com.epam.pizza.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,8 @@ public class HomeAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        ProductDAO productDAO = new ProductDAO();
+        String locale = Locale.getLocale(req);
+        ProductDAO productDAO = new ProductDAO(locale);
         List<Product> products = productDAO.selectAll();
 
         List<Product> pizzas = new ArrayList<>();

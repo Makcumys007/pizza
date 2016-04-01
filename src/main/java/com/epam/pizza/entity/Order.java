@@ -59,19 +59,5 @@ public class Order extends BaseEntity{
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Пользователь: ");
-        sb.append(address.getAddressee());
-        sb.append(" заказал: \n");
-        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            Product product = entry.getKey();
-            Integer count = entry.getValue();
-            sb.append("Товар: " + product.getTitle() + " количество: " + count + "\n");
-        }
-        sb.append("На сумму: ");
-        sb.append(getPrice());
-        return sb.toString();
-    }
+
 }

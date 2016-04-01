@@ -18,12 +18,13 @@ public class ActionFactory {
         actions.put("POST/login", new LoginAction());
         actions.put("GET/logout", new LogoutAction());
         actions.put("GET/profile", new RedirectPageAction("profile"));
+        actions.put("POST/profile", new ProfileAction());
+        actions.put("GET/control", new RedirectPageAction("control"));
 
     }
 
     public Action getAction(HttpServletRequest req) {
         String key = req.getMethod() + req.getPathInfo();
-        System.out.println(key);
         return actions.get(key);
     }
 }

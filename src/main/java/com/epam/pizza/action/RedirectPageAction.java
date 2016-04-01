@@ -24,15 +24,21 @@ public class RedirectPageAction implements Action {
         profile.put("admin", new ShowPageAction(page));
         profile.put("user", new ShowPageAction(page));
 
+        Map<String, Action> control = new HashMap<>();
+
+        control.put("guest", new HomeAction("home"));
+        control.put("admin", new ShowPageAction(page));
+        control.put("user", new HomeAction("home"));
+
         actions.put("register", register);
         actions.put("profile", profile);
+        actions.put("control", control);
 
     }
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         User user = (User) req.getSession(false).getAttribute("user");
-        System.out.println(user.getRole());
         return actions.get(page).get(user.getRole()).execute(req, resp);
     }
 }

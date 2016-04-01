@@ -28,7 +28,7 @@ public class ProductAction implements Action {
         String type = req.getParameter("type");
         String locale = Locale.getLocale(req);
 
-        Map<String, List<Product>> mapProduct = getProductList();
+        Map<String, List<Product>> mapProduct = getProductList(locale);
         List<Product> listProduct = mapProduct.get(type);
 
         req.setAttribute("titlePage", getTitlePage(type, locale));
@@ -57,10 +57,10 @@ public class ProductAction implements Action {
 
     }
 
-    private Map<String, List<Product>> getProductList() {
+    private Map<String, List<Product>> getProductList(String locale) {
         Map<String, List<Product>> mapProduct = new HashMap<>();
 
-        ProductDAO productDAO = new ProductDAO();
+        ProductDAO productDAO = new ProductDAO(locale);
         List<Product> products = productDAO.selectAll();
 
         List<Product> pizzas = new ArrayList<>();

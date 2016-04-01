@@ -13,8 +13,6 @@ public class ShowPageAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-
         return resultPage;
-
     }
 }

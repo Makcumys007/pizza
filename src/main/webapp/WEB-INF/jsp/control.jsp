@@ -28,6 +28,9 @@
     <mtf:message key="slogan_footer" var="sloganFooter" />
     <mtf:message key="marka" var="marka_title" />
 
+    <mtf:message key="our_contacts" var="our_contacts" />
+    <mtf:message key="contacts_desc" var="contacts_desk" />
+
     <mtf:message key="hello" var="hello" />
     <mtf:message key="orders" var="orders" />
     <mtf:message key="settings" var="settings" />
@@ -37,8 +40,7 @@
 
 </mtf:bundle>
 
-
-<h:head  title="${titlePage}"/>
+<h:head  title="${control_panel}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -93,21 +95,10 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${titlePage}:</h1>
+        <h1 class="h1_title">${control_panel}:</h1>
         <br>
-
-        <c:forEach var="product" items="${products}">
-            <div class="product">
-                <img width="230" height="230" src="${product.img}">
-                <h2>"${product.title}"</h2>
-                <p class="price">${price_title}: ${product.price0} тг</p>
-                <p class="desc"><span>*** </span>${composition_title}<span> ***</span></p>
-                <p class="desc2">${product.description}</p>
-                <form action="/do/basket" method="POST">
-                    <input type="hidden" name="id" value="${product.id}">
-                    <input type="submit" value="${add_cart_title}">
-                </form>
-            </div>
-        </c:forEach>
+        <div class="contacts">
+            ${contacts_desk}
+        </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

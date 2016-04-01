@@ -61,9 +61,9 @@ public class UserService {
             user.setEmail(req.getParameter("email"));
             user.setPassword(req.getParameter("password"));
             userDAO.updateEntity(user);
-
             return user;
         } else {
+            req.setAttribute("validate", true);
             throw new ServiceException("Incorrectly entered data!");
         }
     }

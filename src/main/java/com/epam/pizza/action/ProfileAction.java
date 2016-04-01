@@ -1,6 +1,5 @@
 package com.epam.pizza.action;
 
-import com.epam.pizza.entity.User;
 import com.epam.pizza.service.UserService;
 import com.epam.pizza.service.exception.ServiceException;
 
@@ -13,9 +12,8 @@ public class ProfileAction implements Action {
         UserService userService = new UserService(req);
         try {
             userService.getUpdateUser();
-            return new LocaleAction().execute(req, resp);
+            return new LogoutAction().execute(req, resp);
         } catch (ServiceException e) {
-
             return new ShowPageAction("profile").execute(req, resp);
         }
     }

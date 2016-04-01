@@ -36,6 +36,8 @@
     <mtf:message key="settings" var="settings" />
     <mtf:message key="exit" var="exit" />
 
+    <mtf:message key="control_panel" var="control_panel" />
+
 </mtf:bundle>
 
 <h:head  title="${contacts_title}"/>
@@ -65,11 +67,15 @@
             <c:when test="${user.role == 'user'}">
                 <p class="login_p">${hello} ${user.login}!!!</p><br>
                 <a href="#">${orders}</a><br>
-                <a href="#">${settings}</a><br>
+                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
                 <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
             <c:when test="${user.role == 'admin'}">
-                Hello ${user.login}
+                <p class="login_p">${hello} ${user.login}!!!</p><br>
+                <a href="#">${orders}</a><br>
+                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
+                <a href="${pageContext.request.contextPath}/do/control">${control_panel}</a><br>
+                <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
         </c:choose>
 
