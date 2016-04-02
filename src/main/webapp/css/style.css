@@ -67,8 +67,7 @@ body {
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
-	position: relative;
-	bottom: 10px;
+	height: 200px;
 }
 
 .logo {
@@ -256,6 +255,28 @@ body {
 .contacts .blue2 {
 	font: 14px Georgia;
 	color: #344C54;
+}
+
+/* Control panel
+--------------------------------------------------------------------------------*/
+
+
+
+.control th p {
+	font: 18px Georgia;
+	line-height: 1.5;
+	color: #727272;
+}
+
+.control td p {
+	font: 16px Georgia;
+	line-height: 1.5;
+	color: #727272;
+	padding-right: 40px;
+}
+
+.control td input {
+	margin-left: 50px;
 }
 
 	/* Footer

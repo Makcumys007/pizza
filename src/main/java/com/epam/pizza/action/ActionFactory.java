@@ -20,6 +20,7 @@ public class ActionFactory {
         actions.put("GET/profile", new RedirectPageAction("profile"));
         actions.put("POST/profile", new ProfileAction());
         actions.put("GET/control", new RedirectPageAction("control"));
+        actions.put("GET/users-control", new RedirectPageAction("users-control"));
 
     }
 

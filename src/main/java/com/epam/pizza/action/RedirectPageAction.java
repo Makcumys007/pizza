@@ -30,9 +30,15 @@ public class RedirectPageAction implements Action {
         control.put("admin", new ShowPageAction(page));
         control.put("user", new HomeAction("home"));
 
+        Map<String,Action> usersControl = new HashMap<>();
+        usersControl.put("guest", new HomeAction("home"));
+        usersControl.put("admin", new UsersControlAction(page));
+        usersControl.put("user", new HomeAction("home"));
+
         actions.put("register", register);
         actions.put("profile", profile);
         actions.put("control", control);
+        actions.put("users-control",usersControl);
 
     }
 

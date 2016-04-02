@@ -54,9 +54,8 @@ public class ProductDAO implements EntityDAO<Product> {
     }
 
     @Override
-    public int insertEntity(Product product) {
+    public void insertEntity(Product product) {
         // TODO
-        return 0;
     }
 
     @Override

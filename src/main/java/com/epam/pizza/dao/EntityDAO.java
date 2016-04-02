@@ -9,7 +9,7 @@ public interface EntityDAO<T> {
 
     List<T> selectAll();
     T selectById(int id);
-    int insertEntity(T t);
+    void insertEntity(T t);
     T findByEntity(T t);
     void updateEntity(User user);
 }

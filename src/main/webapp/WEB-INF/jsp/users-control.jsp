@@ -39,10 +39,19 @@
     <mtf:message key="control_panel" var="control_panel" />
     <mtf:message key="users" var="users_title" />
     <mtf:message key="products" var="products_title" />
+    <mtf:message key="role" var="role_title" />
+
+    <mtf:message key="save" var="save_title" />
 
 </mtf:bundle>
 
 <h:head  title="${control_panel}"/>
+
+<script src="${pageContext.request.contextPath}/js/guest.js">
+
+</script>
+
+
     <main class="content">
         <div class="nav">
             <ul>
@@ -58,8 +67,34 @@
         <br>
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
-        <div class="contacts">
-            <p>Добро пожаловать на панель администрирования!</p>
+        <div class="control">
+            <table>
+                <tr>
+                    <th><p>${login_title}</p></th>
+                    <th><p>Email</p></th>
+                    <th><p>${role_title}</p></th>
+                    <th></th>
+                </tr>
+            <c:forEach var="user" items="${users}">
+                <tr>
+                    <td><p>${user.login}</p></td>
+                    <td><p>${user.email}</p></td>
+                    <form action="${pageContext.request.contextPath}/do/update-user" method="post">
+                        <td>
+                            <select name="role" onchange="isSelected(this.value);">
+                                <option value="${user.role}" selected><p>${user.role}</p></option>
+                                <option value="admin">admin</option>
+                                <option value="user">user</option>
+                                <option value="guest">guest</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="submit" value="${save_title}" />
+                        </td>
+                    </form>
+                </tr>
+            </c:forEach>
+            </table>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

@@ -1,24 +1,46 @@
 package com.epam.pizza.dao;
 
 import com.epam.pizza.connection.PizzaConnection;
+import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
 import com.epam.pizza.service.exception.ServiceException;
+import org.joda.money.Money;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements EntityDAO<User> {
     private Connection connection = PizzaConnection.getConnection();
+    private final String SELECT_ALL_USERS = "SELECT u.id, u.login, u.email, u.password, ur.role FROM user u INNER JOIN user_role ur WHERE ur.id = u.user_role";
     private final String INSERT_USER = "INSERT INTO user(login, password, email, user_role) VALUES (?, ?, ?, ?)";
-    private final String UPDATE_USER = "update user set password=?, email=?, user_role=(select id FROM user_role WHERE role=?) where id = ?";
-    private final String FIND_USER = "select u.id, u.login, u.password, u.email, ur.role from user u inner" +
-            " join user_role ur where ur.id = u.user_role AND u.login like ?";
+    private final String UPDATE_USER = "UPDATE user SET password=?, email=?, user_role=(SELECT id FROM user_role WHERE role=?) WHERE id = ?";
+    private final String FIND_USER = "SELECT u.id, u.login, u.password, u.email, ur.role FROM user u INNER" +
+            " JOIN user_role ur WHERE ur.id = u.user_role AND u.login LIKE ?";
 
 
     @Override
     public List<User> selectAll() {
-        //TODO
-        return null;
+        List<User> users = new ArrayList<>();
+
+        try (Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery(SELECT_ALL_USERS)) {
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("u.id"));
+                user.setLogin(rs.getString("u.login"));
+                user.setEmail(rs.getString("u.email"));
+                user.setPassword(rs.getString("u.password"));
+                user.setRole(rs.getString("ur.role"));
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeConnection(connection);
+        }
+        return users;
     }
     @Override
     public User selectById(int id) {
@@ -26,7 +48,7 @@ public class UserDAO implements EntityDAO<User> {
     }
 
     @Override
-    public int insertEntity(User user) {
+    public void insertEntity(User user) {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(INSERT_USER);
@@ -41,8 +63,6 @@ public class UserDAO implements EntityDAO<User> {
             PizzaConnection.closeStatement(preparedStatement);
             PizzaConnection.closeConnection(connection);
         }
-        // TODO
-        return 0;
     }
 
     @Override
