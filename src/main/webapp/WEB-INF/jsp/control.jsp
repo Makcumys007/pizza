@@ -43,52 +43,15 @@
 <h:head  title="${control_panel}"/>
 
 <header class="header">
-    <div class="logo"></div>
-    <div class="slogan"><p class="slogan2">${sloganHeader1}</p>
-        <p class="slogan3">${sloganHeader2}</p></div>
-    <div class="login">
-        <c:choose>
-            <c:when test="${user.role == 'guest'}">
-                <form action="${pageContext.request.contextPath}/do/login" method="POST">
-                    <c:if test="${welcome}" >
-                        <p class="validate_r">${login_in}</p>
-                    </c:if>
-                    <c:if test="${validate}" >
-                        <p class="validate_r">${registerValidate}</p>
-                    </c:if>
-                    <p class="login_p">${login_title}:</p>
-                    <input type="text" name="login" />
-                    <p class="login_p">${password_title}:</p>
-                    <input type="password" name="password" />
-                    <br/>
-                    <p class="login_p"><input type="submit" value="${enter_title}" /> <a href="${pageContext.request.contextPath}/do/register">${check_in_title}</a></p>
-                </form>
-            </c:when>
-            <c:when test="${user.role == 'user'}">
-                <p class="login_p">${hello} ${user.login}!!!</p><br>
-                <a href="#">${orders}</a><br>
-                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
-                <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
-            </c:when>
-            <c:when test="${user.role == 'admin'}">
-                <p class="login_p">${hello} ${user.login}!!!</p><br>
-                <a href="#">${orders}</a><br>
-                <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
-                <a href="${pageContext.request.contextPath}/do/control">${control_panel}</a><br>
-                <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
-            </c:when>
-        </c:choose>
 
-        <h:locale />
-    </div>
     <div class="nav">
         <ul>
             <li><a href="${pageContext.request.contextPath}/do/">${home_title}</a></li>
-            <li><a href="${pageContext.request.contextPath}/do/product?type=pizza">${pizza_title}</a></li>
-            <li><a href="${pageContext.request.contextPath}/do/product?type=sushi">${sushi_title}</a></li>
-            <li><a href="${pageContext.request.contextPath}/do/product?type=drink">${drinks_title}</a></li>
-            <li><a href="${pageContext.request.contextPath}/do/contacts">${contacts_title}</a></li>
-            <li><a href="#">${basket_title}(0)</a></li>
+            <li><a href="${pageContext.request.contextPath}/do/users/control">Пользователи</a></li>
+            <li><a href="${pageContext.request.contextPath}/do/products/control">Продукты</a></li>
+            <li><a href="${pageContext.request.contextPath}/do/orders/control">Заказы</a></li>
+            <li><h:locale /></li>
+            <li><a href="${pageContext.request.contextPath}/do/orders/control">Заказы</a></li>
         </ul>
     </div>
 
@@ -98,7 +61,7 @@
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
         <div class="contacts">
-            ${contacts_desk}
+            <p>Добро пожаловать на панель администрирования!</p>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

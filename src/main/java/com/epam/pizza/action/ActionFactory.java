@@ -25,6 +25,8 @@ public class ActionFactory {
 
     public Action getAction(HttpServletRequest req) {
         String key = req.getMethod() + req.getPathInfo();
+        System.out.println(key);
         return actions.get(key);
     }
+
 }
