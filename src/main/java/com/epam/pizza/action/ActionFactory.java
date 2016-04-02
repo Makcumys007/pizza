@@ -21,6 +21,8 @@ public class ActionFactory {
         actions.put("POST/profile", new ProfileAction());
         actions.put("GET/control", new RedirectPageAction("control"));
         actions.put("GET/users-control", new RedirectPageAction("users-control"));
+        actions.put("POST/update-user", new UpdateUserAction());
+        actions.put("POST/delete-user", new DeleteUserAction());
 
     }
 

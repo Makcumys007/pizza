@@ -67,4 +67,9 @@ public class ProductDAO implements EntityDAO<Product> {
     public void updateEntity(User user) {
 
     }
+
+    @Override
+    public void deleteEntity(int id) {
+
+    }
 }

@@ -40,6 +40,8 @@
     <mtf:message key="users" var="users_title" />
     <mtf:message key="products" var="products_title" />
 
+    <mtf:message key="welcome_control_panel" var="welcome_control" />
+
 </mtf:bundle>
 
 <h:head  title="${control_panel}"/>
@@ -59,7 +61,7 @@
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
         <div class="contacts">
-            <p>Добро пожаловать на панель администрирования!</p>
+            ${welcome_control}
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

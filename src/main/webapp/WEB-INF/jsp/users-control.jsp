@@ -42,6 +42,7 @@
     <mtf:message key="role" var="role_title" />
 
     <mtf:message key="save" var="save_title" />
+    <mtf:message key="delete" var="delete_title" />
 
 </mtf:bundle>
 
@@ -74,14 +75,16 @@
                     <th><p>Email</p></th>
                     <th><p>${role_title}</p></th>
                     <th></th>
+                    <th></th>
                 </tr>
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td><p>${user.login}</p></td>
                     <td><p>${user.email}</p></td>
                     <form action="${pageContext.request.contextPath}/do/update-user" method="post">
+                        <input type="hidden" name="update_user_id" value="${user.id}">
                         <td>
-                            <select name="role" onchange="isSelected(this.value);">
+                            <select name="new_role" onchange="isSelected(this.value);">
                                 <option value="${user.role}" selected><p>${user.role}</p></option>
                                 <option value="admin">admin</option>
                                 <option value="user">user</option>
@@ -90,6 +93,12 @@
                         </td>
                         <td>
                             <input type="submit" value="${save_title}" />
+                        </td>
+                    </form>
+                    <form action="${pageContext.request.contextPath}/do/delete-user" method="post">
+                        <td>
+                            <input type="hidden" name="delete_user" value="${user.id}">
+                            <input type="submit" value="${delete_title}" />
                         </td>
                     </form>
                 </tr>

@@ -12,9 +12,11 @@ import java.util.List;
 
 public class UserDAO implements EntityDAO<User> {
     private Connection connection = PizzaConnection.getConnection();
+    private final String SELECT_USER_BY_ID = "SELECT u.id, u.login, u.password, u.email, ur.role FROM user u INNER JOIN user_role ur WHERE ur.id = u.user_role AND u.id = ?";
     private final String SELECT_ALL_USERS = "SELECT u.id, u.login, u.email, u.password, ur.role FROM user u INNER JOIN user_role ur WHERE ur.id = u.user_role";
     private final String INSERT_USER = "INSERT INTO user(login, password, email, user_role) VALUES (?, ?, ?, ?)";
     private final String UPDATE_USER = "UPDATE user SET password=?, email=?, user_role=(SELECT id FROM user_role WHERE role=?) WHERE id = ?";
+    private final String DELETE_USER = "DELETE FROM user WHERE id = ?";
     private final String FIND_USER = "SELECT u.id, u.login, u.password, u.email, ur.role FROM user u INNER" +
             " JOIN user_role ur WHERE ur.id = u.user_role AND u.login LIKE ?";
 
@@ -44,7 +46,29 @@ public class UserDAO implements EntityDAO<User> {
     }
     @Override
     public User selectById(int id) {
-        return null;
+        User user = new User();
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);
+            preparedStatement.setInt(1, id);
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                user.setId(rs.getInt("u.id"));
+                user.setLogin(rs.getString("u.login"));
+                user.setEmail(rs.getString("u.email"));
+                user.setPassword(rs.getString("u.password"));
+                user.setRole(rs.getString("ur.role"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeResultSet(rs);
+            PizzaConnection.closeStatement(preparedStatement);
+            PizzaConnection.closeConnection(connection);
+        }
+        return user;
     }
 
     @Override
@@ -102,6 +126,21 @@ public class UserDAO implements EntityDAO<User> {
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getRole());
             preparedStatement.setInt(4, user.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeStatement(preparedStatement);
+            PizzaConnection.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void deleteEntity(int id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(DELETE_USER);
+            preparedStatement.setInt(1, id);
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);

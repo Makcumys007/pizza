@@ -12,4 +12,5 @@ public interface EntityDAO<T> {
     void insertEntity(T t);
     T findByEntity(T t);
     void updateEntity(User user);
+    void deleteEntity(int id);
 }
