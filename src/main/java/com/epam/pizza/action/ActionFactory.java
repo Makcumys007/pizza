@@ -23,6 +23,9 @@ public class ActionFactory {
         actions.put("GET/users-control", new RedirectPageAction("users-control"));
         actions.put("POST/update-user", new UpdateUserAction());
         actions.put("POST/delete-user", new DeleteUserAction());
+        actions.put("GET/products-control", new RedirectPageAction("products-control"));
+        actions.put("GET/add-product", new RedirectPageAction("add-product"));
+
 
     }
 

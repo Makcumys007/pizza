@@ -11,3 +11,7 @@ function isSelected(role) {
     }
 
 }
+
+function add() {
+    window.location = "/do/add-product"
+}

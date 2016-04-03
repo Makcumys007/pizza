@@ -39,20 +39,12 @@
     <mtf:message key="control_panel" var="control_panel" />
     <mtf:message key="users" var="users_title" />
     <mtf:message key="products" var="products_title" />
-    <mtf:message key="role" var="role_title" />
 
-    <mtf:message key="save" var="save_title" />
-    <mtf:message key="delete" var="delete_title" />
+    <mtf:message key="welcome_control_panel" var="welcome_control" />
 
 </mtf:bundle>
 
 <h:head  title="${control_panel}"/>
-
-<script src="${pageContext.request.contextPath}/js/control.js">
-
-</script>
-
-
     <main class="content">
         <div class="nav">
             <ul>
@@ -68,42 +60,8 @@
         <br>
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
-        <div class="control">
-            <table>
-                <tr>
-                    <th><p>${login_title}</p></th>
-                    <th><p>Email</p></th>
-                    <th><p>${role_title}</p></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            <c:forEach var="user" items="${users}">
-                <tr>
-                    <td><p>${user.login}</p></td>
-                    <td><p>${user.email}</p></td>
-                    <form action="${pageContext.request.contextPath}/do/update-user" method="post">
-                        <input type="hidden" name="update_user_id" value="${user.id}">
-                        <td>
-                            <select name="new_role" onchange="isSelected(this.value);">
-                                <option value="${user.role}" selected><p>${user.role}</p></option>
-                                <option value="admin">admin</option>
-                                <option value="user">user</option>
-                                <option value="guest">guest</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="submit" value="${save_title}" />
-                        </td>
-                    </form>
-                    <form action="${pageContext.request.contextPath}/do/delete-user" method="post">
-                        <td>
-                            <input type="hidden" name="delete_user" value="${user.id}">
-                            <input type="submit" value="${delete_title}" />
-                        </td>
-                    </form>
-                </tr>
-            </c:forEach>
-            </table>
+        <div class="contacts">
+            ${welcome_control}
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />
