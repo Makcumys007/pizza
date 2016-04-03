@@ -61,7 +61,24 @@
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
         <div class="contacts">
-            ${welcome_control}
+            <form action="${pageContext.request.contextPath}/do/add-product" method="post">
+                <p>Название на русском:</p>
+                <input type="text" name="title_ru_RU">
+                <p>Название на англиском:</p>
+                <input type="text" name="title_en_US">
+                <p>Описание на русском:</p>
+                <textarea name="description_ru_RU"></textarea>
+                <p>Описание на англиском:</p>
+                <textarea name="description_en_US"></textarea>
+                <p>Тип продукта:</p>
+                <select name="type">
+                    <option value="PIZZA">${pizza_title}</option>
+                    <option value="SUSHI">${sushi_title}</option>
+                    <option value="DRINK">${drinks_title}</option>
+                </select>
+                <p>Цена:</p>
+                <input type="number" name="price">
+            </form>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />
