@@ -108,7 +108,7 @@
                     <p class="desc2">${pizza.description}</p>
                     <form action="/do/basket" method="POST">
                         <input type="hidden" name="id" value="${pizza.id}">
-                        <input type="submit" value="${add_cart_title}">
+                        <input class="product_btn" type="submit" value="${add_cart_title}">
                     </form>
                 </div>
             </c:forEach>
@@ -127,7 +127,7 @@
                     <p class="desc2">${sushi.description}</p>
                     <form action="/do/basket" method="POST">
                         <input type="hidden" name="id" value="${sushi.id}">
-                        <input type="submit" value="${add_cart_title}">
+                        <input class="product_btn" type="submit" value="${add_cart_title}">
                     </form>
                 </div>
             </c:forEach>

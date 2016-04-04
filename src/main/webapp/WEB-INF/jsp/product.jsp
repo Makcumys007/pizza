@@ -105,7 +105,7 @@
                 <p class="desc2">${product.description}</p>
                 <form action="/do/basket" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input type="submit" value="${add_cart_title}">
+                    <input class="product_btn" type="submit" value="${add_cart_title}">
                 </form>
             </div>
         </c:forEach>

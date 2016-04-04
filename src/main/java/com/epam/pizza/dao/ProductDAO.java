@@ -5,18 +5,19 @@ import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
 import org.joda.money.Money;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO implements EntityDAO<Product> {
-    private final String locale;
+    private String locale;
     private String SELECT_ALL_PRODUCT = "SELECT * FROM product";
+    private String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
 
     private Connection connection = PizzaConnection.getConnection();
+
+    public ProductDAO() {
+    }
 
     public ProductDAO(String locale) {
         this.locale = locale;
@@ -70,6 +71,16 @@ public class ProductDAO implements EntityDAO<Product> {
 
     @Override
     public void deleteEntity(int id) {
-
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(DELETE_PRODUCT);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeStatement(statement);
+            PizzaConnection.closeConnection(connection);
+        }
     }
 }

@@ -61,15 +61,15 @@
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
         <div class="contacts">
-            <form action="${pageContext.request.contextPath}/do/add-product" method="post">
+            <form action="${pageContext.request.contextPath}/do/add-product" method="post" enctype="multipart/form-data">
                 <p>Название на русском:</p>
-                <input type="text" name="title_ru_RU">
+                <input size="50" type="text" name="title_ru_RU">
                 <p>Название на англиском:</p>
-                <input type="text" name="title_en_US">
+                <input size="50" type="text" name="title_en_US">
                 <p>Описание на русском:</p>
-                <textarea name="description_ru_RU"></textarea>
+                <textarea rows="10" cols="50" name="description_ru_RU"></textarea>
                 <p>Описание на англиском:</p>
-                <textarea name="description_en_US"></textarea>
+                <textarea rows="10" cols="50" name="description_en_US"></textarea>
                 <p>Тип продукта:</p>
                 <select name="type">
                     <option value="PIZZA">${pizza_title}</option>
@@ -77,7 +77,11 @@
                     <option value="DRINK">${drinks_title}</option>
                 </select>
                 <p>Цена:</p>
-                <input type="number" name="price">
+                <input type="number" name="price" min="1">
+                <p>Картинка:</p>
+                <input type="file" name="img">
+                <p><br>
+                <input class="product_btn" type="submit" value="Добавить"></p>
             </form>
         </div>
 

@@ -66,7 +66,7 @@
         <div class="product">
             <img width="200" height="200" src="${pageContext.request.contextPath}/img/add.png" onclick="add();">
             <form action="${pageContext.request.contextPath}/do/add-product" method="get">
-                <input type="submit" value="Добавить">
+                <input class="product_btn" type="submit" value="Добавить">
             </form>
         </div>
         <c:forEach var="product" items="${products}">
@@ -78,11 +78,11 @@
                 <p class="desc2">${product.description}</p>
                 <form action="${pageContext.request.contextPath}/do/edit-product" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input type="submit" value="Редактировать">
+                    <input class="product_btn" type="submit" value="Редактировать">
                 </form>
                 <form action="${pageContext.request.contextPath}/do/delete-product" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input type="submit" value="Удалить">
+                    <input class="product_btn" type="submit" value="Удалить">
                 </form>
             </div>
         </c:forEach>
