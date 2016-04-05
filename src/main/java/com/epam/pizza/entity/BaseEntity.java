@@ -11,12 +11,7 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public boolean isNull(Object val) {
-        if (val != null) {
-            return true;
-        }
-        throw new NullPointerException("Not Null!");
-    }
+
 
     @Override
     public boolean equals(Object o) {

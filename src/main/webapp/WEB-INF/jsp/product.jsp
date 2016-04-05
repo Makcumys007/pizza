@@ -98,12 +98,12 @@
 
         <c:forEach var="product" items="${products}">
             <div class="product">
-                <img width="230" height="230" src="${product.img}">
+                <img width="230" height="230" src="${pageContext.request.contextPath}/show-img?img=${product.id}">
                 <h2>"${product.title}"</h2>
                 <p class="price">${price_title}: ${product.price0} тг</p>
                 <p class="desc"><span>*** </span>${composition_title}<span> ***</span></p>
                 <p class="desc2">${product.description}</p>
-                <form action="/do/basket" method="POST">
+                <form action="${pageContext.request.contextPath}/do/basket" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
                     <input class="product_btn" type="submit" value="${add_cart_title}">
                 </form>

@@ -7,6 +7,7 @@ import com.epam.pizza.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import java.io.IOException;
 @MultipartConfig(location="/tmp", fileSizeThreshold=1024*1024,
         maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 @WebServlet (name = "Controller", urlPatterns = "/do/*")
+@WebFilter (filterName = "setCharacterEncodingFilter")
 public class FrontController extends HttpServlet {
     private ActionFactory factory;
     @Override
@@ -26,6 +28,9 @@ public class FrontController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 

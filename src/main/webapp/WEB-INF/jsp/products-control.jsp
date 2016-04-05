@@ -71,7 +71,7 @@
         </div>
         <c:forEach var="product" items="${products}">
             <div class="product">
-                <img width="200" height="200" src="${product.img}">
+                <img width="200" height="200" src="${pageContext.request.contextPath}/show-img?img=${product.id}">
                 <h2>"${product.title}"</h2>
                 <p class="price">${price_title}: ${product.price0} тг</p>
                 <p class="desc"><span>*** </span>${composition_title}<span> ***</span></p>

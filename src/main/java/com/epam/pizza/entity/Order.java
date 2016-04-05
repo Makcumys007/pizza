@@ -20,7 +20,6 @@ public class Order extends BaseEntity{
     }
 
     public Order(User user) {
-        isNull(user);
         this.user = user;
         if (products == null) {
             products = new HashMap<>();
@@ -28,7 +27,6 @@ public class Order extends BaseEntity{
     }
 
     public void add(Product product) {
-        isNull(product);
         price = price.plus(product.getPrice());
         if (!products.containsKey(product)){
              products.put(product, 1);
@@ -55,7 +53,6 @@ public class Order extends BaseEntity{
     }
 
     public void setAddress(Address address) {
-        isNull(address);
         this.address = address;
     }
 

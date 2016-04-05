@@ -1,5 +1,9 @@
 package com.epam.pizza.action;
 
+import com.epam.pizza.dao.ProductDAO;
+import com.epam.pizza.entity.Product;
+import org.joda.money.Money;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,11 +11,11 @@ import javax.servlet.http.Part;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StreamCorruptedException;
 
 public class AddProductAction implements Action {
 
     private String page;
-    private final String PATH = "/makc/";
     public AddProductAction(String page) {
         this.page = page;
     }
@@ -20,36 +24,36 @@ public class AddProductAction implements Action {
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
 
         try {
-            Part img = req.getPart("img");
-            String fileName = getFileName(img);
-            FileOutputStream fos = new FileOutputStream("webapp" + PATH + fileName);
-            InputStream inputStream = img.getInputStream();
-            while (inputStream.available() > 0) {
-                int read = inputStream.read();
-               fos.write(read);
-            }
+            String titleRu = req.getParameter("title_ru_RU");
+            String titleEn = req.getParameter("title_en_US");
+            String descriptionRu = req.getParameter("description_ru_RU");
+            String descriptionUs = req.getParameter("description_en_US");
+            String type = req.getParameter("type");
+            String price = req.getParameter("price");
 
-            inputStream.close();
-            fos.close();
+            Part img = req.getPart("img");
+            InputStream is = img.getInputStream();
+
+            Product product = new Product();
+            product.setTitle(titleRu + " <<<>>> " + titleEn);
+            product.setDescription(descriptionRu + " <<<>>> " + descriptionUs);
+            product.setType(Product.Type.valueOf(type));
+            product.setPrice(Money.parse("KZT " + price));
+
+            ProductDAO productDAO = new ProductDAO(is);
+            productDAO.insertEntity(product);
+
+
+
+
         } catch (IOException e) {
 // TODO обработчик исключения повешай!!!
         } catch (ServletException e) {
 // TODO обработчик исключения повешай!!!
         }
 
-        String titleRu = req.getParameter("title_ru_RU");
 
-
-        String titleEn = req.getParameter("title_en_US");
-        String descriptionRu = req.getParameter("description_ru_RU");
-        String descriptionUs = req.getParameter("description_en_US");
-        String type = req.getParameter("type");
-
-
-
-
-
-        return new ActionResult(page);
+        return new HomeAction("home").execute(req, resp);
     }
 
     private String getFileName(Part img) {
@@ -59,7 +63,7 @@ public class AddProductAction implements Action {
                 return content.substring(content.indexOf('=')+1).trim().replace("\"", "");
             }
         }
-        return null;
+        return String.valueOf(System.currentTimeMillis() / 1024);
     }
 }
 

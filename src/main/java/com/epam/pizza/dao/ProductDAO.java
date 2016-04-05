@@ -12,12 +12,17 @@ import java.util.List;
 
 public class ProductDAO implements EntityDAO<Product> {
     private String locale;
-    private String SELECT_ALL_PRODUCT = "SELECT * FROM product";
-    private String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
-
+    private final String SELECT_ALL_PRODUCT = "SELECT * FROM product";
+    private final String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
+    private final String INSERT_PRODUCT = "INSERT INTO product(title_ru_RU, title_en_US, description_ru_RU, description_en_US, price, type, img) VALUES (?,?,?,?,?,?,?)";
+    private InputStream img;
     private Connection connection = PizzaConnection.getConnection();
 
     public ProductDAO() {
+    }
+
+    public ProductDAO(InputStream img) {
+        this.img = img;
     }
 
     public ProductDAO(String locale) {
@@ -49,14 +54,32 @@ public class ProductDAO implements EntityDAO<Product> {
     }
 
     @Override
-    public Product selectById(int id) {
-        // TODO
-        return null;
+    public void insertEntity(Product product) {
+        String[] titles = product.getTitle().split(" <<<>>> ");
+        String[] desc = product.getDescription().split(" <<<>>> ");
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(INSERT_PRODUCT);
+            ps.setString(1, titles[0]);
+            ps.setString(2, titles[1]);
+            ps.setString(3, desc[0]);
+            ps.setString(4, desc[1]);
+            ps.setString(5, product.getPrice0());
+            ps.setString(6, product.getType().toString());
+            ps.setBinaryStream(7, img);
+            ps.execute();
+
+        } catch (SQLException e) {
+// TODO обработчик исключения повешай!!!
+        } finally {
+            PizzaConnection.closeStatement(ps);
+        }
     }
 
     @Override
-    public void insertEntity(Product product) {
+    public Product selectById(int id) {
         // TODO
+        return null;
     }
 
     @Override

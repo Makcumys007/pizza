@@ -25,7 +25,7 @@ public class ProductAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        String type = req.getParameter("type");
+        String type = req.getParameter("type").toUpperCase();
         String locale = Locale.getLocale(req);
 
         Map<String, List<Product>> mapProduct = getProductList(locale);

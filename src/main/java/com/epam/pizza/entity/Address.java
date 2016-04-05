@@ -11,7 +11,6 @@ public class Address extends BaseEntity {
     }
 
     public void setAddressee(String addressee) {
-        isNull(addressee);
         this.addressee = addressee;
     }
 
@@ -20,7 +19,6 @@ public class Address extends BaseEntity {
     }
 
     public void setStreet(String street) {
-        isNull(street);
         this.street = street;
     }
 
@@ -29,7 +27,6 @@ public class Address extends BaseEntity {
     }
 
     public void setHouseNumber(String houseNumber) {
-        isNull(houseNumber);
         this.houseNumber = houseNumber;
     }
 
@@ -38,15 +35,7 @@ public class Address extends BaseEntity {
     }
 
     public void setFlatNumber(int flatNumber) {
-        isNull(flatNumber);
         this.flatNumber = flatNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Address street=" + street +
-                ", houseNumber=" + houseNumber +
-                ", flatNumber=" + flatNumber +
-                ", addressee=" + addressee;
-    }
 }
