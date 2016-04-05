@@ -101,12 +101,12 @@
             <br>
             <c:forEach var="pizza" items="${pizzas}" end="3">
                 <div class="product">
-                    <img width="230" height="230" src="${pizza.img}">
+                    <img width="230" height="230" src="${pageContext.request.contextPath}/show-img?img=${pizza.id}">
                     <h2>${pizza_title} "${pizza.title}"</h2>
                     <p class="price">${price_title}: ${pizza.price0} тг</p>
                     <p class="desc"><span>*** </span>${composition_title}<span> ***</span></p>
                     <p class="desc2">${pizza.description}</p>
-                    <form action="/do/basket" method="POST">
+                    <form action="${pageContext.request.contextPath}/do/basket" method="POST">
                         <input type="hidden" name="id" value="${pizza.id}">
                         <input class="product_btn" type="submit" value="${add_cart_title}">
                     </form>
@@ -120,12 +120,12 @@
 
             <c:forEach var="sushi" items="${sushis}" end="3">
                 <div class="product">
-                    <img width="218" height="218" src="${sushi.img}">
+                    <img width="218" height="218" src="${pageContext.request.contextPath}/show-img?img=${sushi.id}">
                     <h2>${sushi_title} "${sushi.title}"</h2>
                     <p class="price">${price_title}: ${sushi.price0} тг</p>
                     <p class="desc"><span>*** </span>${composition_title}<span> ***</span></p>
                     <p class="desc2">${sushi.description}</p>
-                    <form action="/do/basket" method="POST">
+                    <form action="${pageContext.request.contextPath}/do/basket" method="POST">
                         <input type="hidden" name="id" value="${sushi.id}">
                         <input class="product_btn" type="submit" value="${add_cart_title}">
                     </form>

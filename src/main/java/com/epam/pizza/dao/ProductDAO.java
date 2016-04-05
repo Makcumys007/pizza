@@ -5,6 +5,7 @@ import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
 import org.joda.money.Money;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,6 @@ public class ProductDAO implements EntityDAO<Product> {
                 product.setTitle(rs.getString("title_" + locale));
                 product.setDescription(rs.getString("description_" + locale));
                 product.setPrice(Money.parse("KZT "+ rs.getString("price")));
-                product.setImg(rs.getString("img"));
                 product.setType(Product.Type.valueOf(rs.getString("type")));
                 products.add(product);
             }
