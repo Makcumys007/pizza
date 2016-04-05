@@ -63,9 +63,9 @@
         <div class="contacts">
             <form action="${pageContext.request.contextPath}/do/add-product" method="post" enctype="multipart/form-data">
                 <p>Название на русском:</p>
-                <input size="50" type="text" name="title_ru_RU">
+                <input size="50" type="text" name="title_ru_RU" />
                 <p>Название на англиском:</p>
-                <input size="50" type="text" name="title_en_US">
+                <input size="50" type="text" name="title_en_US" />
                 <p>Описание на русском:</p>
                 <textarea rows="10" cols="50" name="description_ru_RU"></textarea>
                 <p>Описание на англиском:</p>
@@ -77,9 +77,9 @@
                     <option value="DRINK">${drinks_title}</option>
                 </select>
                 <p>Цена:</p>
-                <input type="number" name="price" min="1">
+                <input type="number" name="price" min="1" />
                 <p>Картинка:</p>
-                <input type="file" name="img">
+                <input type="file" name="img" />
                 <p><br>
                 <input class="product_btn" type="submit" value="Добавить"></p>
             </form>

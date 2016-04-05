@@ -104,7 +104,7 @@ ${sessionScope.clear()}
         <c:if test="${engaged}" >
         <p class="validate_r">${registerValidate2}</p>
         </c:if>
-        <form action="/do/register" method="POST">
+        <form action="${pageContext.request.contextPath}/do/register" method="POST">
             <p class="login_p">${login_title}: </p>
             <input type="text" name="login" value="" />
             <p class="login_p">${password_title}: </p>

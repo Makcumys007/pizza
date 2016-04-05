@@ -28,7 +28,7 @@ public class ActionFactory {
 
         // TODO
         actions.put("GET/add-product", new RedirectPageAction("add-product"));
-        actions.put("POST/add-product", new AddProductAction("add-product"));
+        actions.put("POST/add-product", new AddProductAction("home"));
 
 
     }
