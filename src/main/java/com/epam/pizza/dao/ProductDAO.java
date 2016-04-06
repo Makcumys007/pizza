@@ -5,6 +5,7 @@ import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
 import org.joda.money.Money;
 
+import javax.servlet.ServletOutputStream;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class ProductDAO implements EntityDAO<Product> {
     private final String INSERT_PRODUCT = "INSERT INTO product(title_ru_RU, title_en_US, description_ru_RU, description_en_US, price, type, img) VALUES (?,?,?,?,?,?,?)";
     private InputStream img;
     private Connection connection = PizzaConnection.getConnection();
+    private final String SELECT_IMG_BY_ID = "SELECT img FROM product WHERE id =";
 
     public ProductDAO() {
     }
@@ -70,7 +72,7 @@ public class ProductDAO implements EntityDAO<Product> {
             ps.execute();
 
         } catch (SQLException e) {
-// TODO обработчик исключения повешай!!!
+            throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeStatement(ps);
         }
@@ -92,6 +94,21 @@ public class ProductDAO implements EntityDAO<Product> {
 
     }
 
+    public InputStream getImage(int id) {
+        InputStream is = null;
+        try (Connection connection = PizzaConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(SELECT_IMG_BY_ID + id)) {
+            while (rs.next()) {
+                is = rs.getBinaryStream("img");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        }
+        return is;
+    }
+
     @Override
     public void deleteEntity(int id) {
         PreparedStatement statement = null;
@@ -105,5 +122,10 @@ public class ProductDAO implements EntityDAO<Product> {
             PizzaConnection.closeStatement(statement);
             PizzaConnection.closeConnection(connection);
         }
+    }
+
+    @Override
+    public void close() {
+        PizzaConnection.closeConnection(connection);
     }
 }

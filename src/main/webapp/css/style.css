@@ -118,6 +118,10 @@ body {
 	color: #EA8634;
 }
 
+.locale {
+	margin-top: 5px;
+}
+
 .nav {
 	float: left;
 	margin-top: 10px;

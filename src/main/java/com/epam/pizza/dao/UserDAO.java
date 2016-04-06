@@ -150,5 +150,10 @@ public class UserDAO implements EntityDAO<User> {
         }
     }
 
+    @Override
+    public void close() {
+        PizzaConnection.closeConnection(connection);
+    }
+
 
 }

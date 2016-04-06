@@ -1,5 +1,7 @@
 package com.epam.pizza.action;
 
+import com.epam.pizza.action.page.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +31,7 @@ public class ActionFactory {
         // TODO
         actions.put("GET/add-product", new RedirectPageAction("add-product"));
         actions.put("POST/add-product", new AddProductAction("home"));
+        actions.put("POST/edit-product", new EditProductAction("edit-product"));
 
 
     }

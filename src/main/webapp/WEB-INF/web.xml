@@ -28,6 +28,7 @@
         <filter-class>com.epam.pizza.filter.SetCharacterEncodingFilter</filter-class>
     </filter>
 
+
     <filter-mapping>
         <filter-name>SetCharacterEncodingFilter</filter-name>
         <url-pattern>/do/*</url-pattern>
@@ -37,8 +38,8 @@
     </filter-mapping>
 
     <resource-ref>
-        <description>Blog Connection</description>
-        <res-ref-name>jdbc/blog</res-ref-name>
+        <description>Pizza Connection</description>
+        <res-ref-name>jdbc/pizza</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>

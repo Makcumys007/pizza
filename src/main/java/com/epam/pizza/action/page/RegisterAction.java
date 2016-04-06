@@ -1,5 +1,7 @@
-package com.epam.pizza.action;
+package com.epam.pizza.action.page;
 
+import com.epam.pizza.action.Action;
+import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.dao.UserDAO;
 import com.epam.pizza.entity.User;
 import com.epam.pizza.service.UserService;

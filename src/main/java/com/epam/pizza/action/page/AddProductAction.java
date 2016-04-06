@@ -1,5 +1,7 @@
-package com.epam.pizza.action;
+package com.epam.pizza.action.page;
 
+import com.epam.pizza.action.Action;
+import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.dao.ProductDAO;
 import com.epam.pizza.entity.Product;
 import org.joda.money.Money;
@@ -8,10 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StreamCorruptedException;
 
 public class AddProductAction implements Action {
 
