@@ -27,7 +27,7 @@ public class PizzaConnection {
             try {
                 connection.close();
             } catch (SQLException e) {
-                throw new RuntimeException("Not closeConnection connection: " + e);
+                throw new RuntimeException("Error closing connection: " + e);
             }
         }
     }
@@ -37,7 +37,7 @@ public class PizzaConnection {
             try {
                 statement.close();
             } catch (SQLException e) {
-                throw new RuntimeException("Not closeConnection connection: " + e);
+                throw new RuntimeException("Error closing connection: " + e);
             }
         }
     }
@@ -47,7 +47,7 @@ public class PizzaConnection {
             try {
                 resultSet.close();
             } catch (SQLException e) {
-                throw new RuntimeException("Not closeConnection connection: " + e);
+                throw new RuntimeException("Error closing connection: " + e);
             }
         }
     }
