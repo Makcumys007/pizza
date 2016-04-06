@@ -4,19 +4,36 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.epam.pizza.servlet.FrontController</servlet-class>
+        <!--
+        @MultipartConfig(location="/tmp", fileSizeThreshold=1024*1024,
+        maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+        -->
+        <multipart-config>
+            <max-file-size>5000000</max-file-size>
+            <max-request-size>8000000</max-request-size>
+            <file-size-threshold>1000000</file-size-threshold>
+        </multipart-config>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/do/*</url-pattern>
+    </servlet-mapping>
 
     <filter>
-        <filter-name>setCharacterEncodingFilter</filter-name>
-        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
+        <filter-name>SetCharacterEncodingFilter</filter-name>
+        <filter-class>com.epam.pizza.filter.SetCharacterEncodingFilter</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>setCharacterEncodingFilter</filter-name>
+        <filter-name>SetCharacterEncodingFilter</filter-name>
         <url-pattern>/do/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <!--<servlet-name>Controller</servlet-name>-->
     </filter-mapping>
 
     <resource-ref>

@@ -1,6 +1,7 @@
 <Context path="/">
     <Resource
             url="jdbc:mysql://localhost:3306/pizza"
+            connectionProperties="useUnicode=yes;characterEncoding=utf8;"
             name="jdbc/pizza"
             auth="Container"
             type="javax.sql.DataSource"

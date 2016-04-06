@@ -27,6 +27,7 @@ public class AddProductAction implements Action {
             String titleRu = req.getParameter("title_ru_RU");
             String titleEn = req.getParameter("title_en_US");
             String descriptionRu = req.getParameter("description_ru_RU");
+            System.out.println(descriptionRu);
             String descriptionUs = req.getParameter("description_en_US");
             String type = req.getParameter("type");
             String price = req.getParameter("price");
