@@ -19,7 +19,6 @@ public class LoginAction implements Action {
             User user = userService.getLoginUser();
             req.getSession(false).setAttribute("user", user);
         } catch (ServiceException e) {
-            // TODO обработчик исключения повешай!!!
             req.setAttribute("validate", true);
         }
         return new HomeAction("home").execute(req, resp);

@@ -19,6 +19,7 @@ public class LocaleInstallerServlet extends HttpServlet {
         refererReplaceList.add("login");
         refererReplaceList.add("logout");
         refererReplaceList.add("update-user");
+        refererReplaceList.add("edit-product");
 
     }
 
@@ -33,9 +34,6 @@ public class LocaleInstallerServlet extends HttpServlet {
                 referer = referer.replace(replace, "");
             }
         }
-
-        System.out.println(locale + " " + referer);
-
         resp.sendRedirect(referer);
     }
 }

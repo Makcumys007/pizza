@@ -7,6 +7,7 @@ import com.epam.pizza.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 
 public class EditProductAction implements Action {
 
@@ -27,7 +28,6 @@ public class EditProductAction implements Action {
         req.setAttribute("product", product);
         req.setAttribute("titles", titles);
         req.setAttribute("desc", desc);
-
         return result;
     }
 }

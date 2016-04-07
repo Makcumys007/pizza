@@ -43,6 +43,7 @@
     <mtf:message key="welcome_control_panel" var="welcome_control" />
     <mtf:message key="delete" var="delete_title" />
     <mtf:message key="edit" var="edit_title" />
+    <mtf:message key="add_product" var="add_product_title" />
 
 </mtf:bundle>
 
@@ -68,7 +69,7 @@
         <div class="product">
             <img width="200" height="200" src="${pageContext.request.contextPath}/img/add.png" onclick="add();">
             <form action="${pageContext.request.contextPath}/do/add-product" method="get">
-                <input class="product_btn" type="submit" value="Добавить">
+                <input class="product_btn" type="submit" value="${add_product_title}">
             </form>
         </div>
         <c:forEach var="product" items="${products}">

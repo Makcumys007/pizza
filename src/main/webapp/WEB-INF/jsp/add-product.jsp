@@ -3,7 +3,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="h" %>
 <%@ taglib prefix="mtf" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<mtf:setLocale value="${locale}" scope="session"/>
 
 <mtf:bundle basename="locale">
     <mtf:message key="home" var="home_title" />
@@ -42,9 +42,18 @@
 
     <mtf:message key="welcome_control_panel" var="welcome_control" />
 
+    <mtf:message key="add_product" var="add_product_title" />
+    <mtf:message key="title_product_ru" var="title_product_ru" />
+    <mtf:message key="title_product_en" var="title_product_en" />
+    <mtf:message key="image" var="image_title" />
+    <mtf:message key="desc_product_ru" var="desc_product_ru" />
+    <mtf:message key="desc_product_en" var="desc_product_en" />
+    <mtf:message key="type_of_product" var="type_of_product" />
+
+
 </mtf:bundle>
 
-<h:head  title="${control_panel}"/>
+<h:head  title="${add_product_title}"/>
     <main class="content">
         <div class="nav">
             <ul>
@@ -58,30 +67,30 @@
         </div>
 
         <br>
-        <h1 class="h1_title">${control_panel}:</h1>
+        <h1 class="h1_title">${add_product_title}:</h1>
         <br>
         <div class="contacts">
             <form action="${pageContext.request.contextPath}/do/add-product" method="post" enctype="multipart/form-data">
-                <p>Название на русском:</p>
+                <p>${title_product_ru}:</p>
                 <input size="50" type="text" name="title_ru_RU" />
-                <p>Название на англиском:</p>
+                <p>${title_product_en}:</p>
                 <input size="50" type="text" name="title_en_US" />
-                <p>Описание на русском:</p>
+                <p>${desc_product_ru}:</p>
                 <textarea rows="10" cols="50" name="description_ru_RU"></textarea>
-                <p>Описание на англиском:</p>
+                <p>${desc_product_en}:</p>
                 <textarea rows="10" cols="50" name="description_en_US"></textarea>
-                <p>Тип продукта:</p>
+                <p>${type_of_product}:</p>
                 <select name="type">
                     <option value="PIZZA">${pizza_title}</option>
                     <option value="SUSHI">${sushi_title}</option>
                     <option value="DRINK">${drinks_title}</option>
                 </select>
-                <p>Цена:</p>
+                <p>${price_title}:</p>
                 <input type="number" name="price" min="1" />
-                <p>Картинка:</p>
+                <p>${image_title}:</p>
                 <input type="file" name="img" />
                 <p><br>
-                <input class="product_btn" type="submit" value="Добавить"></p>
+                <input class="product_btn" type="submit" value="${add_product_title}"></p>
             </form>
         </div>
 

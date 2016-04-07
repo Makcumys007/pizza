@@ -15,7 +15,7 @@ public class ProductDAO implements EntityDAO<Product> {
     private String locale;
     private InputStream img;
     private Connection connection = PizzaConnection.getConnection();
-    private final String UPDATE_PRODUCT = "UPDATE product SET title_ru_RU = ?, title_en_US = ?, description_ru_RU = ?, description_en_US = ?, price = ?, type = ? WHERE id = ?";
+    private final String UPDATE_PRODUCT = "UPDATE product SET title_ru_RU = ?, title_en_US = ?, description_ru_RU = ?, description_en_US = ?, price = ?, type = ?, img = ? WHERE id = ?";
     private final String UPDATE_IMG = "UPDATE product SET img = ? WHERE id = ?";
     private final String SELECT_ALL_PRODUCT = "SELECT * FROM product";
     private final String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
@@ -71,7 +71,8 @@ public class ProductDAO implements EntityDAO<Product> {
             ps.setString(4, desc[1]);
             ps.setString(5, product.getPrice0());
             ps.setString(6, product.getType().toString());
-            ps.setInt(7, product.getId());
+            ps.setBinaryStream(7, img);
+            ps.setInt(8, product.getId());
             ps.execute();
 
         } catch (SQLException e) {
@@ -164,18 +165,5 @@ public class ProductDAO implements EntityDAO<Product> {
         PizzaConnection.closeConnection(connection);
     }
 
-    public void updateImage(int id) {
-        PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(UPDATE_IMG);
-            ps.setBinaryStream(1, img);
-            ps.setInt(2, id);
-            ps.execute();
 
-        } catch (SQLException e) {
-            throw new RuntimeException("SQL error: " + e);
-        } finally {
-            PizzaConnection.closeStatement(ps);
-        }
-    }
 }

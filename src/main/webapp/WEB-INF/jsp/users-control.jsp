@@ -46,7 +46,7 @@
 
 </mtf:bundle>
 
-<h:head  title="${control_panel}"/>
+<h:head  title="${users_title}"/>
 
 <script src="${pageContext.request.contextPath}/js/control.js">
 
@@ -66,7 +66,7 @@
         </div>
 
         <br>
-        <h1 class="h1_title">${control_panel}:</h1>
+        <h1 class="h1_title">${users_title}:</h1>
         <br>
         <div class="control">
             <table>

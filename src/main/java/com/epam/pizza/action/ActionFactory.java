@@ -27,11 +27,10 @@ public class ActionFactory {
         actions.put("GET/products-control", new RedirectPageAction("products-control"));
         actions.put("POST/delete-product", new DeleteProductAction());
         actions.put("POST/update-product", new UpdateProductAction("control"));
-
-        // TODO
         actions.put("GET/add-product", new RedirectPageAction("add-product"));
         actions.put("POST/add-product", new AddProductAction("home"));
         actions.put("POST/edit-product", new EditProductAction("edit-product"));
+        actions.put("POST/basket", new AddBasketProductAction());
 
 
     }

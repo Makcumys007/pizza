@@ -43,9 +43,18 @@
     <mtf:message key="welcome_control_panel" var="welcome_control" />
     <mtf:message key="save" var="save_title" />
 
+    <mtf:message key="add_product" var="add_product_title" />
+    <mtf:message key="edit" var="edit_title" />
+    <mtf:message key="title_product_ru" var="title_product_ru" />
+    <mtf:message key="title_product_en" var="title_product_en" />
+    <mtf:message key="image" var="image_title" />
+    <mtf:message key="desc_product_ru" var="desc_product_ru" />
+    <mtf:message key="desc_product_en" var="desc_product_en" />
+    <mtf:message key="type_of_product" var="type_of_product" />
+
 </mtf:bundle>
 
-<h:head  title="${control_panel}"/>
+<h:head  title="${edit_title}"/>
     <main class="content">
         <div class="nav">
             <ul>
@@ -59,30 +68,30 @@
         </div>
 
         <br>
-        <h1 class="h1_title">${control_panel}:</h1>
+        <h1 class="h1_title">${edit_title}:</h1>
         <br>
         <div class="contacts">
             <form action="${pageContext.request.contextPath}/do/update-product" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="${product.id}">
-                <p>Название на русском:</p>
+                <p>${title_product_ru}:</p>
                 <input size="50" type="text" name="title_ru_RU" value="${titles[0]}" />
-                <p>Название на англиском:</p>
+                <p>${title_product_en}:</p>
                 <input size="50" type="text" name="title_en_US" value="${titles[1]}" />
-                <p>Описание на русском:</p>
+                <p>${desc_product_ru}:</p>
                 <textarea rows="10" cols="50" name="description_ru_RU">${desc[0]}</textarea>
-                <p>Описание на англиском:</p>
+                <p>${desc_product_en}:</p>
                 <textarea rows="10" cols="50" name="description_en_US">${desc[1]}</textarea>
-                <p>Тип продукта:</p>
+                <p>${type_of_product}:</p>
                 <select name="type">
                     <option value="${product.type}">${product.type}</option>
                     <option value="PIZZA">${pizza_title}</option>
                     <option value="SUSHI">${sushi_title}</option>
                     <option value="DRINK">${drinks_title}</option>
                 </select>
-                <p>Цена:</p>
+                <p>${price_title}:</p>
                 <input type="number" name="price" min="1" value="${product.price0}"/>
-                <p>Картинка:</p>
-                <input type="file" name="img" />
+                <p>${image_title}:</p>
+                <input type="file" name="img"/>
                 <p><br>
                 <input class="product_btn" type="submit" value="${save_title}"></p>
             </form>

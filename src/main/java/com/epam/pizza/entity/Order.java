@@ -44,6 +44,10 @@ public class Order extends BaseEntity{
         }
     }
 
+    public int size() {
+        return products.size();
+    }
+
     public Money getPrice() {
         return price;
     }
