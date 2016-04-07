@@ -11,6 +11,7 @@ public class Order extends BaseEntity{
     private User user;
     private Map<Product, Integer> products;
     private Address address;
+    private int size = 0;
     private Money price = Money.parse("KZT 0.00");
 
     public Order() {
@@ -35,6 +36,7 @@ public class Order extends BaseEntity{
             count += 1;
             products.put(product, count);
         }
+        size++;
     }
 
     public void remove() {
@@ -44,8 +46,8 @@ public class Order extends BaseEntity{
         }
     }
 
-    public int size() {
-        return products.size();
+    public int getSize() {
+        return size;
     }
 
     public Money getPrice() {

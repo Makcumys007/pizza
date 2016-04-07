@@ -86,7 +86,7 @@
             <li><a href="${pageContext.request.contextPath}/do/product?type=sushi">${sushi_title}</a></li>
             <li><a href="${pageContext.request.contextPath}/do/product?type=drink">${drinks_title}</a></li>
             <li><a href="${pageContext.request.contextPath}/do/contacts">${contacts_title}</a></li>
-            <li><a href="#">${basket_title}(0)</a></li>
+            <li><a href="${pageContext.request.contextPath}/do/basket">${basket_title}(${order.size})</a></li>
         </ul>
     </div>
 
@@ -103,7 +103,7 @@
                 <p class="price">${price_title}: ${product.price0} тг</p>
                 <p class="desc"><span>*** </span>${composition_title}<span> ***</span></p>
                 <p class="desc2">${product.description}</p>
-                <form action="${pageContext.request.contextPath}/do/basket" method="POST">
+                <form action="${pageContext.request.contextPath}/do/add-basket" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
                     <input class="product_btn" type="submit" value="${add_cart_title}">
                 </form>

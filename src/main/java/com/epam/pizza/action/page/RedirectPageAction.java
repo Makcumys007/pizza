@@ -44,12 +44,19 @@ public class RedirectPageAction implements Action {
         productsControl.put("admin", new ProductsControlAction(page));
         productsControl.put("user", new HomeAction("home"));
 
+        Map<String, Action> basket = new HashMap<>();
+
+        basket.put("guest", new HomeAction("home"));
+        basket.put("admin", new ShowBasketAction(page));
+        basket.put("user", new ShowBasketAction(page));
+
         actions.put("register", register);
         actions.put("profile", profile);
         actions.put("control", control);
         actions.put("users-control",usersControl);
         actions.put("products-control", productsControl);
         actions.put("add-product", control);
+        actions.put("basket", basket);
 
     }
 

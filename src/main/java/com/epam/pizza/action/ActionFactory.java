@@ -30,7 +30,9 @@ public class ActionFactory {
         actions.put("GET/add-product", new RedirectPageAction("add-product"));
         actions.put("POST/add-product", new AddProductAction("home"));
         actions.put("POST/edit-product", new EditProductAction("edit-product"));
-        actions.put("POST/basket", new AddBasketProductAction());
+        actions.put("POST/add-basket", new AddBasketProductAction());
+
+        actions.put("GET/basket", new RedirectPageAction("basket"));
 
 
     }

@@ -91,7 +91,7 @@
             <li><a href="${pageContext.request.contextPath}/do/product?type=sushi">${sushi_title}</a></li>
             <li><a href="${pageContext.request.contextPath}/do/product?type=drink">${drinks_title}</a></li>
             <li><a href="${pageContext.request.contextPath}/do/contacts">${contacts_title}</a></li>
-            <li><a href="#">${basket_title}(0)</a></li>
+            <li><a href="${pageContext.request.contextPath}/do/basket">${basket_title}(${order.size})</a></li>
         </ul>
     </div>
 
