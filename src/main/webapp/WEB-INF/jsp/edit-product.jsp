@@ -70,7 +70,7 @@
         <br>
         <h1 class="h1_title">${edit_title}:</h1>
         <br>
-        <div class="contacts">
+        <div class="content2">
             <form action="${pageContext.request.contextPath}/do/update-product" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="${product.id}">
                 <p>${title_product_ru}:</p>

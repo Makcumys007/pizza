@@ -40,7 +40,7 @@
 
 </mtf:bundle>
 
-<h:head  title="${contacts_title}"/>
+<h:head  title="${basket_title}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -95,10 +95,15 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${our_contacts}:</h1>
+        <h1 class="h1_title">${basket_title}:</h1>
         <br>
-        <div class="contacts">
-            ${contacts_desk}
+        <div class="content2">
+            <table>
+                <tr><th><p>Товар</p></th><th><p>Количество</p></th><th><p>Стоимость/шт.</p></th></tr>
+                <c:forEach var="entry" items="${order.products}">
+                    <tr><td>${entry.key.title.replace("<<<>>>", "/")}</td><td>${entry.value}</td><td>${entry.key.price0} тг.</td></tr>
+                </c:forEach>
+            </table>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

@@ -103,7 +103,7 @@
         <c:if test="${validate}" >
         <p class="validate_r">${registerValidate}</p>
         </c:if>
-        <div class="contacts">
+        <div class="content2">
             <form action="${pageContext.request.contextPath}/do/profile" method="post">
                 <p>${login_title}: </p><input type="text" value="${user.login}" disabled>
                 <p>Email: </p><input type="text" value="${user.email}" name="email">

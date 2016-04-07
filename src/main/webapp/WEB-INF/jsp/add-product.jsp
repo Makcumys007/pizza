@@ -69,7 +69,7 @@
         <br>
         <h1 class="h1_title">${add_product_title}:</h1>
         <br>
-        <div class="contacts">
+        <div class="content2">
             <form action="${pageContext.request.contextPath}/do/add-product" method="post" enctype="multipart/form-data">
                 <p>${title_product_ru}:</p>
                 <input size="50" type="text" name="title_ru_RU" />

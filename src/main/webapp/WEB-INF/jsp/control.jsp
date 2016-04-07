@@ -60,7 +60,7 @@
         <br>
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
-        <div class="contacts">
+        <div class="content2">
             ${welcome_control}
         </div>
 

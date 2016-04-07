@@ -240,25 +240,37 @@ body {
 /* Contacts
 -----------------------------------------------------------------------------*/
 
-.contacts {
+.content2 {
 
 }
 
-.contacts p {
+.content2 p {
 	font: 16px Georgia;
 	line-height: 1.5;
 	color: #727272;
 }
 
-.contacts .blue {
+.content2 .blue {
 	font: 18px Georgia;
 	color: #344C54;
 }
 
-.contacts .blue2 {
+.content2 .blue2 {
 	font: 14px Georgia;
 	color: #344C54;
 }
+
+.content2 table th,
+.content2 table td {
+	padding: 0 30px 0 30px;
+	text-align: center;
+}
+
+.content2 table td {
+	font: 14px Georgia;
+	line-height: 1.5;
+}
+
 
 /* Control panel
 --------------------------------------------------------------------------------*/

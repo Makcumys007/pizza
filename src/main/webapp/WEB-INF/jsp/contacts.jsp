@@ -97,7 +97,7 @@
         <br>
         <h1 class="h1_title">${our_contacts}:</h1>
         <br>
-        <div class="contacts">
+        <div class="content2">
             ${contacts_desk}
         </div>
 

@@ -102,6 +102,8 @@ public class ProductDAO implements EntityDAO<Product> {
         return product;
     }
 
+
+
     @Override
     public Product findByEntity(Product product) {
         return null;

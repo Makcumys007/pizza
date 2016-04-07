@@ -13,6 +13,7 @@ public class AddBasketProductAction implements Action {
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
+
         ProductDAO productDAO = new ProductDAO();
         Product product = productDAO.selectById(id);
         productDAO.close();

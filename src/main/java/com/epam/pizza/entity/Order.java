@@ -1,12 +1,11 @@
 package com.epam.pizza.entity;
 
 import org.joda.money.Money;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Order extends BaseEntity{
+public class Order extends BaseEntity {
 
     private User user;
     private Map<Product, Integer> products;
@@ -20,17 +19,10 @@ public class Order extends BaseEntity{
         }
     }
 
-    public Order(User user) {
-        this.user = user;
-        if (products == null) {
-            products = new HashMap<>();
-        }
-    }
-
     public void add(Product product) {
         price = price.plus(product.getPrice());
-        if (!products.containsKey(product)){
-             products.put(product, 1);
+        if (!products.containsKey(product)) {
+            products.put(product, 1);
         } else {
             int count = products.get(product);
             count += 1;
@@ -62,5 +54,15 @@ public class Order extends BaseEntity{
         this.address = address;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
 }
