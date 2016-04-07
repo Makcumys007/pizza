@@ -15,7 +15,8 @@ public class ProductDAO implements EntityDAO<Product> {
     private String locale;
     private InputStream img;
     private Connection connection = PizzaConnection.getConnection();
-    private final String UPDATE_PRODUCT = "";
+    private final String UPDATE_PRODUCT = "UPDATE product SET title_ru_RU = ?, title_en_US = ?, description_ru_RU = ?, description_en_US = ?, price = ?, type = ? WHERE id = ?";
+    private final String UPDATE_IMG = "UPDATE product SET img = ? WHERE id = ?";
     private final String SELECT_ALL_PRODUCT = "SELECT * FROM product";
     private final String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
     private final String INSERT_PRODUCT = "INSERT INTO product(title_ru_RU, title_en_US, description_ru_RU, description_en_US, price, type, img) VALUES (?,?,?,?,?,?,?)";
@@ -58,19 +59,19 @@ public class ProductDAO implements EntityDAO<Product> {
     }
 
     @Override
-    public void insertEntity(Product product) {
+    public void updateEntity(Product product) {
         String[] titles = product.getTitle().split(" <<<>>> ");
         String[] desc = product.getDescription().split(" <<<>>> ");
         PreparedStatement ps = null;
         try {
-            ps = connection.prepareStatement(INSERT_PRODUCT);
+            ps = connection.prepareStatement(UPDATE_PRODUCT);
             ps.setString(1, titles[0]);
             ps.setString(2, titles[1]);
             ps.setString(3, desc[0]);
             ps.setString(4, desc[1]);
             ps.setString(5, product.getPrice0());
             ps.setString(6, product.getType().toString());
-            ps.setBinaryStream(7, img);
+            ps.setInt(7, product.getId());
             ps.execute();
 
         } catch (SQLException e) {
@@ -106,8 +107,26 @@ public class ProductDAO implements EntityDAO<Product> {
     }
 
     @Override
-    public void updateEntity(Product product) {
+    public void insertEntity(Product product) {
+        String[] titles = product.getTitle().split(" <<<>>> ");
+        String[] desc = product.getDescription().split(" <<<>>> ");
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(INSERT_PRODUCT);
+            ps.setString(1, titles[0]);
+            ps.setString(2, titles[1]);
+            ps.setString(3, desc[0]);
+            ps.setString(4, desc[1]);
+            ps.setString(5, product.getPrice0());
+            ps.setString(6, product.getType().toString());
+            ps.setBinaryStream(7, img);
+            ps.execute();
 
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeStatement(ps);
+        }
     }
 
     public InputStream getImage(int id) {
@@ -146,6 +165,17 @@ public class ProductDAO implements EntityDAO<Product> {
     }
 
     public void updateImage(int id) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(UPDATE_IMG);
+            ps.setBinaryStream(1, img);
+            ps.setInt(2, id);
+            ps.execute();
 
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        } finally {
+            PizzaConnection.closeStatement(ps);
+        }
     }
 }

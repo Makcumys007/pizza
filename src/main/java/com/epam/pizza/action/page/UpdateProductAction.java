@@ -39,17 +39,17 @@ public class UpdateProductAction implements Action {
             product.setPrice(Money.parse("KZT " + price));
 
             Part img = req.getPart("img");
+            ProductDAO productDAO = null;
             if (img != null) {
                 InputStream is = img.getInputStream();
-                ProductDAO productDAO = new ProductDAO(is);
+                productDAO = new ProductDAO(is);
                 productDAO.updateEntity(product);
                 productDAO.updateImage(id);
             } else {
-                ProductDAO productDAO = new ProductDAO();
+                productDAO = new ProductDAO();
                 productDAO.updateEntity(product);
             }
-
-
+            productDAO.close();
 
         } catch (IOException e) {
             throw new RuntimeException("Error closing connection: " + e);
