@@ -3,7 +3,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="h" %>
 <%@ taglib prefix="mtf" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<mtf:setLocale value="${locale}" scope="session"/>
 
 <mtf:bundle basename="locale">
     <mtf:message key="home" var="home_title" />

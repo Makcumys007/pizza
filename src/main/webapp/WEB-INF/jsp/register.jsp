@@ -3,6 +3,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="h" %>
 <%@ taglib prefix="mtf" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<mtf:setLocale value="${locale}" scope="session"/>
+
 ${sessionScope.clear()}
 
 <mtf:bundle basename="locale">
