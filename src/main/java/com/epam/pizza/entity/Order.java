@@ -34,6 +34,7 @@ public class Order extends BaseEntity {
     public void remove() {
         if (products != null) {
             price = Money.parse("KZT 0.00");
+            size = 0;
             products.clear();
         }
     }
@@ -44,6 +45,10 @@ public class Order extends BaseEntity {
 
     public Money getPrice() {
         return price;
+    }
+
+    public String getPrice0() {
+        return price.getAmount().toString();
     }
 
     public Address getAddress() {

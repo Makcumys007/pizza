@@ -271,6 +271,17 @@ body {
 	line-height: 1.5;
 }
 
+.amount {
+	margin-top: 40px;
+	width: 500px;
+	border-top: 1px dotted #D6D6D6;
+	margin-bottom: 20px;
+}
+
+.amount span {
+	margin-left: 100px;
+}
+
 
 /* Control panel
 --------------------------------------------------------------------------------*/

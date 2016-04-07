@@ -104,6 +104,12 @@
                     <tr><td>${entry.key.title.replace("<<<>>>", "/")}</td><td>${entry.value}</td><td>${entry.key.price0} тг.</td></tr>
                 </c:forEach>
             </table>
+
+            <div class="amount"><p>Общая стоимость:<span>${order.price0}тг.</span></p></div>
+            <form action="${pageContext.request.contextPath}/do/basket-action" method="post">
+                <button name="clear" value="clear">Очистить корзину</button>
+                <button name="buy" value="buy">Купить</button>
+            </form>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />
