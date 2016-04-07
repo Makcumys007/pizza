@@ -26,6 +26,7 @@ public class ActionFactory {
         actions.put("POST/delete-user", new DeleteUserAction());
         actions.put("GET/products-control", new RedirectPageAction("products-control"));
         actions.put("POST/delete-product", new DeleteProductAction());
+        actions.put("POST/update-product", new UpdateProductAction("products-control"));
 
         // TODO
         actions.put("GET/add-product", new RedirectPageAction("add-product"));

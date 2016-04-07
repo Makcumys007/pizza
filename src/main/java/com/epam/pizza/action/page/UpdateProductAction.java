@@ -13,18 +13,17 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AddProductAction implements Action {
-
+public class UpdateProductAction implements Action {
     private ActionResult result;
 
-    public AddProductAction(String page) {
+    public UpdateProductAction(String page) {
         result = new ActionResult(page);
     }
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-
         try {
+            int id = Integer.parseInt(req.getParameter("id"));
             String titleRu = req.getParameter("title_ru_RU");
             String titleEn = req.getParameter("title_en_US");
             String descriptionRu = req.getParameter("description_ru_RU");
@@ -32,17 +31,25 @@ public class AddProductAction implements Action {
             String type = req.getParameter("type");
             String price = req.getParameter("price");
 
-            Part img = req.getPart("img");
-            InputStream is = img.getInputStream();
-
             Product product = new Product();
+            product.setId(id);
             product.setTitle(titleRu + " <<<>>> " + titleEn);
             product.setDescription(descriptionRu + " <<<>>> " + descriptionUs);
             product.setType(Product.Type.valueOf(type));
             product.setPrice(Money.parse("KZT " + price));
 
-            ProductDAO productDAO = new ProductDAO(is);
-            productDAO.insertEntity(product);
+            Part img = req.getPart("img");
+            if (img != null) {
+                InputStream is = img.getInputStream();
+                ProductDAO productDAO = new ProductDAO(is);
+                productDAO.updateEntity(product);
+                productDAO.updateImage(id);
+            } else {
+                ProductDAO productDAO = new ProductDAO();
+                productDAO.updateEntity(product);
+            }
+
+
 
         } catch (IOException e) {
             throw new RuntimeException("Error closing connection: " + e);
@@ -51,25 +58,4 @@ public class AddProductAction implements Action {
         }
         return result;
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

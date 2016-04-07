@@ -11,7 +11,7 @@ public interface EntityDAO<T> {
     T selectById(int id);
     void insertEntity(T t);
     T findByEntity(T t);
-    void updateEntity(User user);
+    void updateEntity(T t);
     void deleteEntity(int id);
     void close();
 }

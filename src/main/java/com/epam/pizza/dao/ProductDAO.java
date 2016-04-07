@@ -13,11 +13,12 @@ import java.util.List;
 
 public class ProductDAO implements EntityDAO<Product> {
     private String locale;
+    private InputStream img;
+    private Connection connection = PizzaConnection.getConnection();
+    private final String UPDATE_PRODUCT = "";
     private final String SELECT_ALL_PRODUCT = "SELECT * FROM product";
     private final String DELETE_PRODUCT = "DELETE FROM product WHERE id = ?";
     private final String INSERT_PRODUCT = "INSERT INTO product(title_ru_RU, title_en_US, description_ru_RU, description_en_US, price, type, img) VALUES (?,?,?,?,?,?,?)";
-    private InputStream img;
-    private Connection connection = PizzaConnection.getConnection();
     private final String SELECT_IMG_BY_ID = "SELECT img FROM product WHERE id =";
     private final String SELECT_BY_ID = "SELECT * FROM product WHERE id = ";
 
@@ -105,7 +106,7 @@ public class ProductDAO implements EntityDAO<Product> {
     }
 
     @Override
-    public void updateEntity(User user) {
+    public void updateEntity(Product product) {
 
     }
 
@@ -142,5 +143,9 @@ public class ProductDAO implements EntityDAO<Product> {
     @Override
     public void close() {
         PizzaConnection.closeConnection(connection);
+    }
+
+    public void updateImage(int id) {
+
     }
 }

@@ -62,7 +62,7 @@
         <h1 class="h1_title">${control_panel}:</h1>
         <br>
         <div class="contacts">
-            <form action="${pageContext.request.contextPath}/do/add-product" method="post" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/do/update-product" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="${product.id}">
                 <p>Название на русском:</p>
                 <input size="50" type="text" name="title_ru_RU" value="${titles[0]}" />
