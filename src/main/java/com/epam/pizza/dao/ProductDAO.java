@@ -19,6 +19,7 @@ public class ProductDAO implements EntityDAO<Product> {
     private InputStream img;
     private Connection connection = PizzaConnection.getConnection();
     private final String SELECT_IMG_BY_ID = "SELECT img FROM product WHERE id =";
+    private final String SELECT_BY_ID = "SELECT * FROM product WHERE id = ";
 
     public ProductDAO() {
     }
@@ -80,8 +81,22 @@ public class ProductDAO implements EntityDAO<Product> {
 
     @Override
     public Product selectById(int id) {
-        // TODO
-        return null;
+        Product product = new Product();
+
+            try (Statement st = connection.createStatement();
+                 ResultSet rs = st.executeQuery(SELECT_BY_ID + id)) {
+                    while (rs.next()) {
+                        product.setId(rs.getInt("id"));
+                        product.setTitle(rs.getString("title_ru_RU") + " <<<>>> " + rs.getString("title_en_US"));
+                        product.setDescription(rs.getString("description_ru_RU") + " <<<>>> " + rs.getString("description_en_US"));
+                        product.setType(Product.Type.valueOf(rs.getString("type")));
+                        product.setPrice(Money.parse("KZT " + rs.getString("price")));
+                    }
+            } catch (SQLException e) {
+                throw new RuntimeException("SQL error: " + e);
+            }
+
+        return product;
     }
 
     @Override

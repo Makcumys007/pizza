@@ -41,6 +41,7 @@
     <mtf:message key="products" var="products_title" />
 
     <mtf:message key="welcome_control_panel" var="welcome_control" />
+    <mtf:message key="save" var="save_title" />
 
 </mtf:bundle>
 
@@ -62,26 +63,28 @@
         <br>
         <div class="contacts">
             <form action="${pageContext.request.contextPath}/do/add-product" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="${product.id}">
                 <p>Название на русском:</p>
-                <input size="50" type="text" name="title_ru_RU" />
+                <input size="50" type="text" name="title_ru_RU" value="${titles[0]}" />
                 <p>Название на англиском:</p>
-                <input size="50" type="text" name="title_en_US" />
+                <input size="50" type="text" name="title_en_US" value="${titles[1]}" />
                 <p>Описание на русском:</p>
-                <textarea rows="10" cols="50" name="description_ru_RU"></textarea>
+                <textarea rows="10" cols="50" name="description_ru_RU">${desc[0]}</textarea>
                 <p>Описание на англиском:</p>
-                <textarea rows="10" cols="50" name="description_en_US"></textarea>
+                <textarea rows="10" cols="50" name="description_en_US">${desc[1]}</textarea>
                 <p>Тип продукта:</p>
                 <select name="type">
+                    <option value="${product.type}">${product.type}</option>
                     <option value="PIZZA">${pizza_title}</option>
                     <option value="SUSHI">${sushi_title}</option>
                     <option value="DRINK">${drinks_title}</option>
                 </select>
                 <p>Цена:</p>
-                <input type="number" name="price" min="1" />
+                <input type="number" name="price" min="1" value="${product.price0}"/>
                 <p>Картинка:</p>
                 <input type="file" name="img" />
                 <p><br>
-                <input class="product_btn" type="submit" value="Добавить"></p>
+                <input class="product_btn" type="submit" value="${save_title}"></p>
             </form>
         </div>
 

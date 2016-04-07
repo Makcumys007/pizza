@@ -41,6 +41,8 @@
     <mtf:message key="products" var="products_title" />
 
     <mtf:message key="welcome_control_panel" var="welcome_control" />
+    <mtf:message key="delete" var="delete_title" />
+    <mtf:message key="edit" var="edit_title" />
 
 </mtf:bundle>
 
@@ -78,11 +80,11 @@
                 <p class="desc2">${product.description}</p>
                 <form action="${pageContext.request.contextPath}/do/edit-product" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input class="product_btn" type="submit" value="Редактировать">
+                    <input class="product_btn" type="submit" value="${edit_title}">
                 </form>
                 <form action="${pageContext.request.contextPath}/do/delete-product" method="POST">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input class="product_btn" type="submit" value="Удалить">
+                    <input class="product_btn" type="submit" value="${delete_title}">
                 </form>
             </div>
         </c:forEach>
