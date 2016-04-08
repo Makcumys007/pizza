@@ -3,9 +3,9 @@ package com.epam.pizza.entity;
 public class Address extends BaseEntity {
     private String addressee;
     private String street;
-    private String houseNumber;
+    private int houseNumber;
     private int flatNumber;
-    private int phone;
+    private String phone;
 
     public String getAddressee() {
         return addressee;
@@ -23,11 +23,11 @@ public class Address extends BaseEntity {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public int getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(String houseNumber) {
+    public void setHouseNumber(int houseNumber) {
         this.houseNumber = houseNumber;
     }
 
@@ -39,11 +39,11 @@ public class Address extends BaseEntity {
         this.flatNumber = flatNumber;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

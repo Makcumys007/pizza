@@ -57,6 +57,7 @@ public class RedirectPageAction implements Action {
         address.put("admin", new ShowPageAction(page));
         address.put("user", new ShowPageAction(page));
 
+
         actions.put("register", register);
         actions.put("profile", profile);
         actions.put("control", control);
