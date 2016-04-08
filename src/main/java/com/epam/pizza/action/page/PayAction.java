@@ -17,12 +17,17 @@ public class PayAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("Hi!!!!");
         BankAccount bankAccount = new BankAccount();
         bankAccount.setNumber(req.getParameter("number"));
         bankAccount.setTime(req.getParameter("time"));
         bankAccount.setCvv(req.getParameter("cvv"));
 
         BankAccount account = bankAccount.findBankAccountAccount(bankAccount);
+
+        if (bankAccount.equals(account)) {
+            System.out.println(account.getMoney().getAmount());
+        }
 
 
 

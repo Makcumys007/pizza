@@ -36,6 +36,8 @@ public class ActionFactory {
         actions.put("POST/basket-action", new BasketDoAction());
         actions.put("GET/address", new RedirectPageAction("address"));
         actions.put("POST/address", new AddressAction("pay"));
+        // TODO: 08.04.16
+        actions.put("POST/pay", new PayAction("pay"));
 
     }
 
