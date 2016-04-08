@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AddBasketProductAction implements Action {
+    private ActionResult result;
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
@@ -23,6 +24,12 @@ public class AddBasketProductAction implements Action {
         order.add(product);
         req.getSession(false).setAttribute("order", order);
 
-        return new HomeAction("home").execute(req, resp);
+        String referer = req.getHeader("Referer");
+
+
+        return new ActionResult(referer, true);
     }
+
+
+
 }
