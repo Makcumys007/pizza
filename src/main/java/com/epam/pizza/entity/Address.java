@@ -5,6 +5,7 @@ public class Address extends BaseEntity {
     private String street;
     private String houseNumber;
     private int flatNumber;
+    private int phone;
 
     public String getAddressee() {
         return addressee;
@@ -38,4 +39,11 @@ public class Address extends BaseEntity {
         this.flatNumber = flatNumber;
     }
 
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
 }

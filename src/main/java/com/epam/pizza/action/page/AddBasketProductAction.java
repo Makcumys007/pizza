@@ -8,11 +8,17 @@ import com.epam.pizza.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddBasketProductAction implements Action {
-    private ActionResult result;
+    private List<String> refererReplaceList = new ArrayList<>();
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+
+        refererReplaceList.add("basket-action");
+        refererReplaceList.add("login");
+
         int id = Integer.parseInt(req.getParameter("id"));
 
         ProductDAO productDAO = new ProductDAO();
@@ -26,6 +32,11 @@ public class AddBasketProductAction implements Action {
 
         String referer = req.getHeader("Referer");
 
+        for (String ref : refererReplaceList) {
+            if (referer.endsWith(ref)) {
+                referer = referer.replace(ref, "");
+            }
+        }
 
         return new ActionResult(referer, true);
     }

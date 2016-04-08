@@ -40,7 +40,7 @@
 
 </mtf:bundle>
 
-<h:head  title="${basket_title}"/>
+<h:head  title="Введите адрес"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -95,28 +95,23 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${basket_title}:</h1>
+        <h1 class="h1_title">Введите адрес:</h1>
         <br>
         <div class="content2">
-            <c:choose>
-                <c:when test="${order.size > 0}" >
-                    <table>
-                        <tr><th><p>Товар</p></th><th><p>Количество</p></th><th><p>Стоимость/шт.</p></th></tr>
-                        <c:forEach var="entry" items="${order.products}">
-                            <tr><td>${entry.key.title.replace("<<<>>>", "/")}</td><td>${entry.value}</td><td>${entry.key.price0} тг.</td></tr>
-                        </c:forEach>
-                    </table>
+            <form action="${pageContext.request.contextPath}/do/address" method="post">
+                <p>ФИО получателя: <br>
+                <input type="text" name="addressee"></p>
+                <p>Улица: <br>
+                <input type="text" name="street"></p>
+                <p>Номер дома: <br>
+                <input type="number" name="house" min="1"></p>
+                <p>Номер квартиры: <br>
+                <input type="number" name="flat" min="1"></p>
+                <p>Номер телефона: <br>
+                +7 <input type="text" name="phone"></p>
+                <p><br><input type="submit" value="Далее"></p>
 
-                    <div class="amount"><p>Общая стоимость:<span>${order.price0}тг.</span></p></div>
-                    <form action="${pageContext.request.contextPath}/do/basket-action" method="post">
-                        <button name="clear" value="clear">Очистить корзину</button>
-                        <button name="buy" value="buy">Купить</button>
-                    </form>
-                </c:when>
-                <c:when test="${order.size == 0}" >
-                    <p>Корзина пуста!</p>
-                </c:when>
-            </c:choose>
+            </form>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

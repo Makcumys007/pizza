@@ -19,11 +19,8 @@ public class BasketDoAction implements Action {
             order.remove();
             result = new HomeAction("home").execute(req, resp);
         } else if (buy != null && buy.equals("buy")) {
-            System.out.println("Buy");
-            result = new HomeAction("home").execute(req, resp);
+            result = new ActionResult("address");
         }
-
-
         return result;
     }
 }

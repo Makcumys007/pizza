@@ -34,6 +34,7 @@ public class ActionFactory {
 
         actions.put("GET/basket", new RedirectPageAction("basket"));
         actions.put("POST/basket-action", new BasketDoAction());
+        actions.put("GET/address", new RedirectPageAction("address"));
 
 
     }
