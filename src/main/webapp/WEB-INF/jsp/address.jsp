@@ -37,10 +37,17 @@
     <mtf:message key="exit" var="exit" />
 
     <mtf:message key="control_panel" var="control_panel" />
+    <mtf:message key="full_name" var="full_name" />
+    <mtf:message key="street" var="street_title" />
+    <mtf:message key="house_number" var="house_number" />
+    <mtf:message key="apartment_number" var="apartment_number" />
+    <mtf:message key="phone_number" var="phone_number" />
+    <mtf:message key="entered_address" var="entered_address" />
+    <mtf:message key="next" var="next" />
 
 </mtf:bundle>
 
-<h:head  title="Введите адрес"/>
+<h:head  title="${entered_address}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -95,21 +102,21 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">Введите адрес:</h1>
+        <h1 class="h1_title">${entered_address}:</h1>
         <br>
         <div class="content2">
             <form action="${pageContext.request.contextPath}/do/address" method="post">
-                <p>ФИО получателя: <br>
+                <p>${full_name}: <br>
                 <input type="text" name="addressee"></p>
-                <p>Улица: <br>
+                <p>${street_title}: <br>
                 <input type="text" name="street"></p>
-                <p>Номер дома: <br>
+                <p>${house_number}: <br>
                 <input type="number" name="house" min="1"></p>
-                <p>Номер квартиры: <br>
+                <p>${apartment_number}: <br>
                 <input type="number" name="flat" min="1"></p>
-                <p>Номер телефона: <br>
-                +7 <input type="text" name="phone"></p>
-                <p><br><input type="submit" value="Далее"></p>
+                <p>${phone_number}: +7<br>
+                <input type="text" name="phone"></p>
+                <p><br><input type="submit" value="${next}"></p>
 
             </form>
         </div>

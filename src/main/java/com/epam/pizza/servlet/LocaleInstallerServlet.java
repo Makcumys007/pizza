@@ -11,15 +11,16 @@ import java.util.List;
 import java.util.Map;
 
 public class LocaleInstallerServlet extends HttpServlet {
-    private List<String> refererReplaceList;
+    private Map<String, String> refMap;
 
     @Override
     public void init() throws ServletException {
-        refererReplaceList = new ArrayList<>();
-        refererReplaceList.add("login");
-        refererReplaceList.add("logout");
-        refererReplaceList.add("update-user");
-        refererReplaceList.add("edit-product");
+        refMap = new HashMap<>();
+        refMap.put("login", "");
+        refMap.put("logout", "");
+        refMap.put("update-user", "");
+        refMap.put("edit-product", "");
+        refMap.put("basket-action", "basket");
 
     }
 
@@ -29,9 +30,9 @@ public class LocaleInstallerServlet extends HttpServlet {
         req.getSession().setAttribute("locale", locale);
         String referer = req.getHeader("Referer");
 
-        for (String replace : refererReplaceList) {
-            if (referer.endsWith(replace)) {
-                referer = referer.replace(replace, "");
+        for (Map.Entry<String, String> entry : refMap.entrySet()) {
+            if (referer.endsWith(entry.getKey())) {
+                referer = referer.replace(entry.getKey(), entry.getValue());
             }
         }
         resp.sendRedirect(referer);

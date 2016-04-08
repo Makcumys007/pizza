@@ -37,6 +37,12 @@
     <mtf:message key="exit" var="exit" />
 
     <mtf:message key="control_panel" var="control_panel" />
+    <mtf:message key="product" var="product_title" />
+    <mtf:message key="quantity" var="quantity_title" />
+    <mtf:message key="clear_basket" var="clear_basket" />
+    <mtf:message key="total_cost" var="total_cost" />
+    <mtf:message key="buy" var="buy" />
+    <mtf:message key="cart_is_empty" var="cart_is_empty" />
 
 </mtf:bundle>
 
@@ -101,20 +107,20 @@
             <c:choose>
                 <c:when test="${order.size > 0}" >
                     <table>
-                        <tr><th><p>Товар</p></th><th><p>Количество</p></th><th><p>Стоимость/шт.</p></th></tr>
+                        <tr><th><p>${product_title}</p></th><th><p>${quantity_title}</p></th><th><p>${price_title}</p></th></tr>
                         <c:forEach var="entry" items="${order.products}">
                             <tr><td>${entry.key.title.replace("<<<>>>", "/")}</td><td>${entry.value}</td><td>${entry.key.price0} тг.</td></tr>
                         </c:forEach>
                     </table>
 
-                    <div class="amount"><p>Общая стоимость:<span>${order.price0}тг.</span></p></div>
+                    <div class="amount"><p>${total_cost}:<span>${order.price0}тг.</span></p></div>
                     <form action="${pageContext.request.contextPath}/do/basket-action" method="post">
-                        <button name="clear" value="clear">Очистить корзину</button>
-                        <button name="buy" value="buy">Купить</button>
+                        <button name="clear" value="clear">${clear_basket}</button>
+                        <button name="buy" value="buy">${buy}</button>
                     </form>
                 </c:when>
                 <c:when test="${order.size == 0}" >
-                    <p>Корзина пуста!</p>
+                    <p>${cart_is_empty}</p>
                 </c:when>
             </c:choose>
         </div>

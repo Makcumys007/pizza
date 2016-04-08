@@ -20,6 +20,7 @@ ${sessionScope.clear()}
 
     <mtf:message key="login" var="login_title" />
     <mtf:message key="password" var="password_title" />
+    <mtf:message key="password2" var="password_title2" />
     <mtf:message key="enter" var="enter_title" />
     <mtf:message key="check_in" var="check_in_title" />
 
@@ -108,11 +109,13 @@ ${sessionScope.clear()}
         </c:if>
         <form action="${pageContext.request.contextPath}/do/register" method="POST">
             <p class="login_p">${login_title}: </p>
-            <input type="text" name="login" value="" />
-            <p class="login_p">${password_title}: </p>
-            <input type="text" name="password" value="" />
+            <input type="text" name="login" />
             <p class="login_p">Email: </p>
-            <input type="text" name="email" value="" />
+            <input type="text" name="email" />
+            <p class="login_p">${password_title}: </p>
+            <input type="text" name="password" />
+            <p class="login_p">${password_title2}: </p>
+            <input type="text" name="password2" />
             <p class="login_p">
                 <input type="submit" value="${check_in_title}" /></p>
         </form>
