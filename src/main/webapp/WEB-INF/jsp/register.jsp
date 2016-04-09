@@ -113,9 +113,9 @@ ${sessionScope.clear()}
             <p class="login_p">Email: </p>
             <input type="text" name="email" />
             <p class="login_p">${password_title}: </p>
-            <input type="text" name="password" />
+            <input type="password" name="password" />
             <p class="login_p">${password_title2}: </p>
-            <input type="text" name="password2" />
+            <input type="password" name="password2" />
             <p class="login_p">
                 <input type="submit" value="${check_in_title}" /></p>
         </form>

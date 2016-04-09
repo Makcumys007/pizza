@@ -22,10 +22,12 @@ public class UserService {
 
     public User getRegisteringUser() throws ServiceException {
         User user = new User();
-        if (validation.validate()) {
+        if (validation.validate() &&
+                req.getParameter("password").equals(req.getParameter("password2"))) {
             user.setLogin(req.getParameter("login"));
             user.setEmail(req.getParameter("email"));
             user.setPassword(req.getParameter("password"));
+
 
             User findUser = userDAO.findByEntity(user);
             if (findUser.getLogin() == null) {
