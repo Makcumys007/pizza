@@ -75,7 +75,7 @@ ${sessionScope.clear()}
             </c:when>
             <c:when test="${user.role == 'admin'}">
                 <p class="login_p">${hello} ${user.login}!!!</p><br>
-                <a href="#">${orders}</a><br>
+                <a href="${pageContext.request.contextPath}/do/user-orders">${orders}</a><br>
                 <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
                 <a href="${pageContext.request.contextPath}/do/control">${control_panel}</a><br>
                 <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>

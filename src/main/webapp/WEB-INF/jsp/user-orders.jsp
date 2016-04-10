@@ -37,19 +37,10 @@
     <mtf:message key="exit" var="exit" />
 
     <mtf:message key="control_panel" var="control_panel" />
-    <mtf:message key="product" var="product_title" />
-    <mtf:message key="quantity" var="quantity_title" />
-    <mtf:message key="clear_basket" var="clear_basket" />
-    <mtf:message key="total_cost" var="total_cost" />
-    <mtf:message key="buy" var="buy" />
-    <mtf:message key="cart_is_empty" var="cart_is_empty" />
-    <mtf:message key="bank_card" var="bank_card_title" />
-    <mtf:message key="card_number" var="card_number_title" />
-    <mtf:message key="time_to_life" var="time_to_life_title" />
 
 </mtf:bundle>
 
-<h:head  title="${bank_card_title}"/>
+<h:head  title="${contacts_title}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -104,23 +95,10 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${bank_card_title}:</h1>
+        <h1 class="h1_title">${our_contacts}:</h1>
         <br>
         <div class="content2">
-            <c:if test="${bankerror}" >
-                <p>На вашей карте нет баланса, или
-                    через нее нельзя проводить электронные платежи!</p>
-            </c:if>
-            <form action="${pageContext.request.contextPath}/do/pay" method="post">
-                <p>${card_number_title}: <br>
-                <input type="text" name="number"></p>
-                <p>${time_to_life_title}: <br>
-                <input type="text" name="time"></p>
-                <p>CVV: <br>
-                <input type="text" name="cvv"></p>
-                <p><br><input type="submit" value="Купить"></p>
-            </form>
-
+            ${contacts_desk}
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

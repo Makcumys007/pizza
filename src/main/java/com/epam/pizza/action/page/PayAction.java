@@ -46,7 +46,7 @@ public class PayAction implements Action {
             order.remove();
         } else {
             req.setAttribute("bankerror", true);
-            result = new ActionResult("bankerror");
+            result = new ActionResult("pay");
         }
         bankDAO.close();
         return result;

@@ -31,13 +31,12 @@ public class ActionFactory {
         actions.put("POST/add-product", new AddProductAction());
         actions.put("POST/edit-product", new EditProductAction("edit-product"));
         actions.put("POST/add-basket", new AddBasketProductAction());
-
         actions.put("GET/basket", new RedirectPageAction("basket"));
         actions.put("POST/basket-action", new BasketDoAction());
         actions.put("GET/address", new RedirectPageAction("address"));
         actions.put("POST/address", new AddressAction("pay"));
-        // TODO: 08.04.16
         actions.put("POST/pay", new PayAction(""));
+        actions.put("GET/user-orders", new RedirectPageAction("user-orders"));
 
     }
 

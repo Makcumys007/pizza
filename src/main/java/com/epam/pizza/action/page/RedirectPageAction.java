@@ -57,6 +57,12 @@ public class RedirectPageAction implements Action {
         address.put("admin", new ShowPageAction(page));
         address.put("user", new ShowPageAction(page));
 
+        Map<String, Action> userOrders = new HashMap<>();
+
+        userOrders.put("guest", new HomeAction("home"));
+        userOrders.put("admin", new ShowPageAction(page));
+        userOrders.put("user", new ShowPageAction(page));
+
 
         actions.put("register", register);
         actions.put("profile", profile);
@@ -66,6 +72,7 @@ public class RedirectPageAction implements Action {
         actions.put("add-product", control);
         actions.put("basket", basket);
         actions.put("address", address);
+        actions.put("user-orders", userOrders);
 
     }
 
