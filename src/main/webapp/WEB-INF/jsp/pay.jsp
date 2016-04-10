@@ -43,10 +43,13 @@
     <mtf:message key="total_cost" var="total_cost" />
     <mtf:message key="buy" var="buy" />
     <mtf:message key="cart_is_empty" var="cart_is_empty" />
+    <mtf:message key="bank_card" var="bank_card_title" />
+    <mtf:message key="card_number" var="card_number_title" />
+    <mtf:message key="time_to_life" var="time_to_life_title" />
 
 </mtf:bundle>
 
-<h:head  title="${basket_title}"/>
+<h:head  title="${bank_card_title}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -101,13 +104,13 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${basket_title}:</h1>
+        <h1 class="h1_title">${bank_card_title}:</h1>
         <br>
         <div class="content2">
             <form action="${pageContext.request.contextPath}/do/pay" method="post">
-                <p>Номер карты: <br>
+                <p>${card_number_title}: <br>
                 <input type="text" name="number"></p>
-                <p>Срок годности карты: <br>
+                <p>${time_to_life_title}: <br>
                 <input type="text" name="time"></p>
                 <p>CVV: <br>
                 <input type="text" name="cvv"></p>

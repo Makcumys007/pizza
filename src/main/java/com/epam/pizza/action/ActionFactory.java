@@ -28,7 +28,7 @@ public class ActionFactory {
         actions.put("POST/delete-product", new DeleteProductAction());
         actions.put("POST/update-product", new UpdateProductAction("control"));
         actions.put("GET/add-product", new RedirectPageAction("add-product"));
-        actions.put("POST/add-product", new AddProductAction("home"));
+        actions.put("POST/add-product", new AddProductAction());
         actions.put("POST/edit-product", new EditProductAction("edit-product"));
         actions.put("POST/add-basket", new AddBasketProductAction());
 
@@ -37,7 +37,7 @@ public class ActionFactory {
         actions.put("GET/address", new RedirectPageAction("address"));
         actions.put("POST/address", new AddressAction("pay"));
         // TODO: 08.04.16
-        actions.put("POST/pay", new PayAction("pay"));
+        actions.put("POST/pay", new PayAction(""));
 
     }
 

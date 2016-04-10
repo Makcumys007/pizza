@@ -15,11 +15,7 @@ import java.io.InputStream;
 
 public class AddProductAction implements Action {
 
-    private ActionResult result;
 
-    public AddProductAction(String page) {
-        result = new ActionResult(page);
-    }
 
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -49,7 +45,7 @@ public class AddProductAction implements Action {
         } catch (ServletException e) {
             throw new RuntimeException("Servlet error: " + e);
         }
-        return result;
+        return new ActionResult("", true);
     }
 
 

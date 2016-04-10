@@ -70,4 +70,13 @@ public class Order extends BaseEntity {
     public Map<Product, Integer> getProducts() {
         return products;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+            sb.append(entry.getKey().getTitle().replace("<<<>>>", "/") + " - " + entry.getValue() +" ");
+        }
+        return sb.toString();
+    }
 }

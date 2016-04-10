@@ -46,4 +46,13 @@ public class Address extends BaseEntity {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return addressee + " " +
+                street + " " +
+                houseNumber + " " +
+                flatNumber + " " +
+                phone;
+    }
 }

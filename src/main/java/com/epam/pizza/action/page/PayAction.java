@@ -4,6 +4,7 @@ import com.epam.pizza.action.Action;
 import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.connection.PizzaConnection;
 import com.epam.pizza.dao.BankDAO;
+import com.epam.pizza.dao.OrderDAO;
 import com.epam.pizza.entity.BankAccount;
 import com.epam.pizza.entity.Order;
 import org.joda.money.Money;
@@ -18,7 +19,7 @@ public class PayAction implements Action {
 
     private ActionResult result;
     public PayAction(String page) {
-        result = new ActionResult(page);
+        result = new ActionResult(page, true);
     }
 
 
@@ -40,14 +41,14 @@ public class PayAction implements Action {
 
         pizzaAccount = bankDAO.findBankAccountAccount(pizzaAccount);
 
-
         if (userAccount.getMoney().getAmount().compareTo(order.getPrice().getAmount()) > 0) {
-           bankDAO.transaction(userAccount, pizzaAccount, order);
+            bankDAO.transaction(userAccount, pizzaAccount, order);
+            order.remove();
+        } else {
+            req.setAttribute("bankerror", true);
+            result = new ActionResult("bankerror");
         }
         bankDAO.close();
-
-
-
         return result;
     }
 }

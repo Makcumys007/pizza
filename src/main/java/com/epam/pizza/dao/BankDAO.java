@@ -48,8 +48,9 @@ public class BankDAO extends BaseEntity{
             pizzaAccountPlus.setInt(2, pizzaAccount.getId());
             pizzaAccountPlus.executeUpdate();
 
-
-
+            OrderDAO orderDAO = new OrderDAO();
+            orderDAO.insertEntity(order);
+            orderDAO.close();
 
             connection.commit();
         } catch (SQLException e) {
