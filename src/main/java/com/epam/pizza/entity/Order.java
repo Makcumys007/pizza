@@ -2,6 +2,7 @@ package com.epam.pizza.entity;
 
 import org.joda.money.Money;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,9 @@ public class Order extends BaseEntity {
     private Map<Product, Integer> products;
     private Address address;
     private int size = 0;
+    private String description;
     private Money price = Money.parse("KZT 0.00");
+    private Date date;
 
     public Order() {
         if (products == null) {
@@ -71,12 +74,34 @@ public class Order extends BaseEntity {
         return products;
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            sb.append(entry.getKey().getTitle().replace("<<<>>>", "/") + " - " + entry.getValue() +" ");
+            sb.append(entry.getKey().getTitle().replace("<<<>>>", "/") + " - " + entry.getValue() +"\n");
         }
         return sb.toString();
     }
+
+
 }

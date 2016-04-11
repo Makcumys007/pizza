@@ -3,6 +3,13 @@ package com.epam.pizza.entity;
 public class BaseEntity {
     private Integer id;
 
+    public BaseEntity(Integer id) {
+        this.id = id;
+    }
+
+    public BaseEntity() {
+    }
+
     public int getId() {
         return id;
     }

@@ -60,8 +60,8 @@ public class RedirectPageAction implements Action {
         Map<String, Action> userOrders = new HashMap<>();
 
         userOrders.put("guest", new HomeAction("home"));
-        userOrders.put("admin", new ShowPageAction(page));
-        userOrders.put("user", new ShowPageAction(page));
+        userOrders.put("admin", new ShowUserOrdersAction(page));
+        userOrders.put("user", new ShowUserOrdersAction(page));
 
 
         actions.put("register", register);

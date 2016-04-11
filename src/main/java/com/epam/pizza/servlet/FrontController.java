@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 
 public class FrontController extends HttpServlet {
     private ActionFactory factory;
@@ -37,8 +38,10 @@ public class FrontController extends HttpServlet {
         Order order = (Order) session.getAttribute("order");
         if (order == null) {
             order = new Order();
+            order.setDate(new Date(new java.util.Date().getTime()));
             req.getSession(false).setAttribute("order", order);
         } else {
+            order.setDate(new Date(new java.util.Date().getTime()));
             req.getSession(false).setAttribute("order", order);
         }
 

@@ -38,9 +38,13 @@
 
     <mtf:message key="control_panel" var="control_panel" />
 
+    <mtf:message key="order_description" var="order_description_title" />
+    <mtf:message key="quantity" var="quantity_title" />
+    <mtf:message key="order_date" var="order_date_title" />
+
 </mtf:bundle>
 
-<h:head  title="${contacts_title}"/>
+<h:head  title="${orders}"/>
 
 <header class="header">
     <div class="logo"></div>
@@ -66,7 +70,7 @@
             </c:when>
             <c:when test="${user.role == 'user'}">
                 <p class="login_p">${hello} ${user.login}!!!</p><br>
-                <a href="#">${orders}</a><br>
+                <a href="${pageContext.request.contextPath}/do/user-orders">${orders}</a><br>
                 <a href="${pageContext.request.contextPath}/do/profile">${settings}</a><br>
                 <a href="${pageContext.request.contextPath}/do/logout">${exit}</a>
             </c:when>
@@ -95,10 +99,15 @@
 </header><!-- .header-->
     <main class="content">
         <br>
-        <h1 class="h1_title">${our_contacts}:</h1>
+        <h1 class="h1_title">${orders}:</h1>
         <br>
         <div class="content2">
-            ${contacts_desk}
+            <table>
+                <tr><th><p>${order_description_title}</p></th><th><p>${quantity_title}</p></th><th><p>${order_date_title}</p></th></tr>
+            <c:forEach var="orderItem" items="${orderList}">
+                <tr><td>${orderItem.description}</td><td>${orderItem.size}</td><td><p>${orderItem.date}</p></td></tr>
+            </c:forEach>
+            </table>
         </div>
 
 <h:footer company="${marka_title}" slogan="${sloganFooter}" />

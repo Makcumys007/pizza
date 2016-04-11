@@ -10,6 +10,10 @@ public class User extends BaseEntity{
     public User() {
     }
 
+    public User(Integer id) {
+        super(id);
+    }
+
     public User(String role) {
         this.role = role;
     }
