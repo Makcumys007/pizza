@@ -10,13 +10,15 @@ import java.sql.Date;
 import java.util.*;
 
 public class OrderDAO {
-    private  String SELECT_ALL = "SELECT * FROM `pizza`.`order`";
+    private static String SELECT_ALL = "SELECT * FROM `pizza`.`order`";
     private String INSERT_ORDER = "INSERT INTO `pizza`.`order`(`user_id`,`address`,`description`,`count`, `date`)VALUES(?,?,?,?,?)";
     private String SELECT_BY_ID = "SELECT * FROM `pizza`.`order` WHERE user_id = ";
+    private String tmp;
     private Connection connection;
 
     public OrderDAO() {
        connection = PizzaConnection.getConnection();
+        tmp = SELECT_ALL;
     }
 
 
@@ -41,12 +43,16 @@ public class OrderDAO {
     public List<Order> selectAll() {
         List<Order> orders = new ArrayList<>();
         try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery(SELECT_ALL);) {
+             ResultSet rs = st.executeQuery(SELECT_ALL)) {
+
+            System.out.println(SELECT_ALL);
 
             while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
-                order.setUser(new User(rs.getInt("user_id")));
+                UserDAO userDAO = new UserDAO();
+                User user = userDAO.selectById(rs.getInt("user_id"));
+                order.setUser(user);
 
                 String[] adr = rs.getString("address").split(" ");
                 Address address = new Address();
@@ -65,6 +71,10 @@ public class OrderDAO {
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);
         }
+        SELECT_ALL = tmp;
+
+
+        System.out.println(SELECT_ALL);
         return orders;
     }
 
@@ -87,4 +97,16 @@ public class OrderDAO {
     public void close() {
         PizzaConnection.closeConnection(connection);
     }
+
+    public void setParameter(String param) {
+        if (param.equals("new")) {
+            SELECT_ALL = SELECT_ALL + " WHERE date like \'" + new Date(new java.util.Date().getTime()).toString() + "\'";
+        } else if (param.equals("delivered")) {
+            SELECT_ALL = SELECT_ALL + " WHERE status like 1";
+        }  else {
+            SELECT_ALL = tmp;
+        }
+     }
+
+
 }

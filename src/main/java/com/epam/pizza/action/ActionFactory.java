@@ -37,6 +37,8 @@ public class ActionFactory {
         actions.put("POST/address", new AddressAction("pay"));
         actions.put("POST/pay", new PayAction(""));
         actions.put("GET/user-orders", new RedirectPageAction("user-orders"));
+        actions.put("GET/orders-control", new RedirectPageAction("orders-control"));
+        actions.put("POST/select-orders", new RedirectPageAction("orders-control"));
 
     }
 

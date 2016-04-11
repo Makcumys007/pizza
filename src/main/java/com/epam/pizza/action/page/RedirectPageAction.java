@@ -60,9 +60,15 @@ public class RedirectPageAction implements Action {
         Map<String, Action> userOrders = new HashMap<>();
 
         userOrders.put("guest", new HomeAction("home"));
-        userOrders.put("admin", new ShowUserOrdersAction(page));
-        userOrders.put("user", new ShowUserOrdersAction(page));
+        userOrders.put("admin", new ShowOrdersAction(page));
+        userOrders.put("user", new ShowOrdersAction(page));
 
+
+        Map<String, Action> adminOrders = new HashMap<>();
+
+        adminOrders.put("guest", new HomeAction("home"));
+        adminOrders.put("admin", new AdminOrdersAction(page));
+        adminOrders.put("user", new AdminOrdersAction(page));
 
         actions.put("register", register);
         actions.put("profile", profile);
@@ -73,6 +79,8 @@ public class RedirectPageAction implements Action {
         actions.put("basket", basket);
         actions.put("address", address);
         actions.put("user-orders", userOrders);
+        actions.put("orders-control", adminOrders);
+        actions.put("select-orders", adminOrders);
 
     }
 

@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class ShowUserOrdersAction implements Action {
+public class ShowOrdersAction implements Action {
     private ActionResult result;
-    public ShowUserOrdersAction(String page) {
+
+    public ShowOrdersAction(String page) {
         result = new ActionResult(page);
     }
 
@@ -20,9 +21,9 @@ public class ShowUserOrdersAction implements Action {
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         User user = (User) req.getSession(false).getAttribute("user");
         OrderDAO orderDAO = new OrderDAO();
-        List<Order> orders = orderDAO.selectById(user.getId());
+        List<Order> orderList = orderDAO.selectById(user.getId());
         orderDAO.close();
-        req.setAttribute("orderList", orders);
+        req.setAttribute("orderList", orderList);
         return result;
     }
 }
