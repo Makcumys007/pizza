@@ -21,6 +21,7 @@ public class ProductsControlAction implements Action {
         String locale = Locale.getLocale(req);
         ProductDAO productDAO = new ProductDAO(locale);
         List<Product> products = productDAO.selectAll();
+        productDAO.close();
         req.setAttribute("products", products);
         return productsControl;
     }

@@ -62,9 +62,7 @@ public class ProductDAO implements EntityDAO<Product> {
     public void updateEntity(Product product) {
         String[] titles = product.getTitle().split(" <<<>>> ");
         String[] desc = product.getDescription().split(" <<<>>> ");
-        PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(UPDATE_PRODUCT);
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_PRODUCT)) {
             ps.setString(1, titles[0]);
             ps.setString(2, titles[1]);
             ps.setString(3, desc[0]);
@@ -77,8 +75,6 @@ public class ProductDAO implements EntityDAO<Product> {
 
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);
-        } finally {
-            PizzaConnection.closeStatement(ps);
         }
     }
 
@@ -113,9 +109,8 @@ public class ProductDAO implements EntityDAO<Product> {
     public void insertEntity(Product product) {
         String[] titles = product.getTitle().split(" <<<>>> ");
         String[] desc = product.getDescription().split(" <<<>>> ");
-        PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(INSERT_PRODUCT);
+
+        try (PreparedStatement ps = connection.prepareStatement(INSERT_PRODUCT);) {
             ps.setString(1, titles[0]);
             ps.setString(2, titles[1]);
             ps.setString(3, desc[0]);
@@ -127,8 +122,6 @@ public class ProductDAO implements EntityDAO<Product> {
 
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);
-        } finally {
-            PizzaConnection.closeStatement(ps);
         }
     }
 
@@ -149,15 +142,12 @@ public class ProductDAO implements EntityDAO<Product> {
 
     @Override
     public void deleteEntity(int id) {
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(DELETE_PRODUCT);
+        try (PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT);) {
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException("SQL error: " + e);
         } finally {
-            PizzaConnection.closeStatement(statement);
             PizzaConnection.closeConnection(connection);
         }
     }

@@ -22,9 +22,9 @@ public class OrderDAO {
 
     public List<Order> selectById(int id) {
         List<Order> orders = new ArrayList<>();
-        try {
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(SELECT_BY_ID + id);
+        try (Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery(SELECT_BY_ID + id);) {
+
             while (rs.next()) {
                 Order order = new Order();
                 order.setDescription(rs.getString("description"));
@@ -40,9 +40,9 @@ public class OrderDAO {
 
     public List<Order> selectAll() {
         List<Order> orders = new ArrayList<>();
-        try {
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(SELECT_ALL);
+        try (Statement st = connection.createStatement();
+             ResultSet rs = st.executeQuery(SELECT_ALL);) {
+
             while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
@@ -70,8 +70,7 @@ public class OrderDAO {
 
 
     public void insertEntity(Order order) {
-        try {
-            PreparedStatement ps = connection.prepareStatement(INSERT_ORDER);
+        try (PreparedStatement ps = connection.prepareStatement(INSERT_ORDER);) {
             ps.setInt(1, order.getUser().getId());
             ps.setString(2, order.getAddress().toString());
             ps.setString(3, order.toString());
@@ -86,6 +85,6 @@ public class OrderDAO {
 
 
     public void close() {
-        PizzaConnection.getConnection();
+        PizzaConnection.closeConnection(connection);
     }
 }

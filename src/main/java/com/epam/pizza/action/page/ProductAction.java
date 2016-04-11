@@ -64,7 +64,7 @@ public class ProductAction implements Action {
 
         ProductDAO productDAO = new ProductDAO(locale);
         List<Product> products = productDAO.selectAll();
-
+        productDAO.close();
         List<Product> pizzas = new ArrayList<>();
         List<Product> sushis = new ArrayList<>();
         List<Product> drinks = new ArrayList<>();

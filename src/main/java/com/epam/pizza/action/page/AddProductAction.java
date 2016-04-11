@@ -39,7 +39,8 @@ public class AddProductAction implements Action {
 
             ProductDAO productDAO = new ProductDAO(is);
             productDAO.insertEntity(product);
-
+            productDAO.close();
+            is.close();
         } catch (IOException e) {
             throw new RuntimeException("Error closing connection: " + e);
         } catch (ServletException e) {

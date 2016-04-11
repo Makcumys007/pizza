@@ -24,7 +24,7 @@ public class HomeAction implements Action {
         String locale = Locale.getLocale(req);
         ProductDAO productDAO = new ProductDAO(locale);
         List<Product> products = productDAO.selectAll();
-
+        productDAO.close();
         List<Product> pizzas = new ArrayList<>();
         List<Product> sushis = new ArrayList<>();
 

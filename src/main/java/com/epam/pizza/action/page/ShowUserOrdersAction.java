@@ -21,6 +21,7 @@ public class ShowUserOrdersAction implements Action {
         User user = (User) req.getSession(false).getAttribute("user");
         OrderDAO orderDAO = new OrderDAO();
         List<Order> orders = orderDAO.selectById(user.getId());
+        orderDAO.close();
         req.setAttribute("orderList", orders);
         return result;
     }

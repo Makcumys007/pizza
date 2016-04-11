@@ -44,7 +44,7 @@ public class UpdateProductAction implements Action {
             productDAO.updateEntity(product);
 
             productDAO.close();
-
+            is.close();
         } catch (IOException e) {
             throw new RuntimeException("Error closing connection: " + e);
         } catch (ServletException e) {
