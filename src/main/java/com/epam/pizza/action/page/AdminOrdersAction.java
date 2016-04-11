@@ -22,15 +22,15 @@ public class AdminOrdersAction implements Action {
 
         String select = req.getParameter("select");
 
-        if (select != null && select.equals("new")) {
-            orderDAO.setParameter("new");
-            req.setAttribute("newCheck", true);
+        if (select != null && select.equals("all")) {
+            orderDAO.setParameter("all");
+            req.setAttribute("allCheck", true);
         } else if (select != null && select.equals("delivered")) {
             orderDAO.setParameter("delivered");
             req.setAttribute("deliveredCheck", true);
         } else {
-            orderDAO.setParameter("all");
-            req.setAttribute("allCheck", true);
+            orderDAO.setParameter("new");
+            req.setAttribute("newCheck", true);
         }
 
         List<Order> orderList = orderDAO.selectAll();

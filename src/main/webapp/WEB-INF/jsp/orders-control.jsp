@@ -48,6 +48,11 @@
     <mtf:message key="order_description" var="order_description_title" />
     <mtf:message key="quantity" var="quantity_title" />
     <mtf:message key="order_date" var="order_date_title" />
+    <mtf:message key="addressee" var="addressee_title" />
+    <mtf:message key="new_order" var="new_order_title" />
+    <mtf:message key="delivered_order" var="delivered_order_title" />
+    <mtf:message key="all_order" var="all_order_title" />
+    <mtf:message key="status_order" var="status_title" />
 
 </mtf:bundle>
 
@@ -72,7 +77,25 @@
         <br>
         <div class="content2">
             <form action="${pageContext.request.contextPath}/do/select-orders" method="post">
-                Все
+                ${new_order_title}
+                <c:choose>
+                    <c:when test="${!newCheck}" >
+                        <input type="checkbox" name="select" value="new" onclick="this.form.submit()">
+                    </c:when>
+                    <c:when test="${newCheck}" >
+                        <input type="checkbox" onclick="this.form.submit()" checked>
+                    </c:when>
+                </c:choose>
+                ${delivered_order_title}
+                <c:choose>
+                    <c:when test="${!deliveredCheck}" >
+                        <input type="checkbox" name="select" value="delivered" onclick="this.form.submit()">
+                    </c:when>
+                    <c:when test="${deliveredCheck}" >
+                        <input type="checkbox" onclick="this.form.submit()" checked>
+                    </c:when>
+                </c:choose>
+                ${all_order_title}
                <c:choose>
                         <c:when test="${!allCheck}" >
                             <input type="checkbox" name="select" value="all" onclick="this.form.submit()">
@@ -81,31 +104,40 @@
                             <input type="checkbox" onclick="this.form.submit()" checked>
                         </c:when>
                </c:choose>
-                Новые
-               <c:choose>
-                        <c:when test="${!newCheck}" >
-                            <input type="checkbox" name="select" value="new" onclick="this.form.submit()">
-                        </c:when>
-                         <c:when test="${newCheck}" >
-                             <input type="checkbox" onclick="this.form.submit()" checked>
-                         </c:when>
-                </c:choose>
-                Доставленные
-                <c:choose>
-                        <c:when test="${!deliveredCheck}" >
-                             <input type="checkbox" name="select" value="delivered" onclick="this.form.submit()">
-                        </c:when>
-                        <c:when test="${deliveredCheck}" >
-                             <input type="checkbox" onclick="this.form.submit()" checked>
-                        </c:when>
-                    </c:choose>
-
 
             </form>
             <table>
-                <tr><th><p>Заказчик</p></th><th><p>${order_description_title}</p></th><th><p>${quantity_title}</p></th><th><p>Получатель</p></th><th><p>${order_date_title}</p></th></tr>
+                <tr>
+                    <th><p>${login_title}</p></th>
+                    <th><p>${order_description_title}</p></th>
+                    <th><p>${quantity_title}</p></th>
+                    <th><p>${addressee_title}</p></th>
+                    <th><p>${order_date_title}</p></th>
+                    <th><p>${status_title}</p></th></tr>
                 <c:forEach var="orderItem" items="${orderList}">
-                    <tr><td>${orderItem.user.login}</td><td>${orderItem.description}</td><td>${orderItem.size}</td><td>${orderItem.address}</td><td>${orderItem.date}</td></tr>
+                    <tr><td>${orderItem.user.login}</td>
+                        <td>${orderItem.description}</td>
+                        <td>${orderItem.size}</td>
+                        <td>${orderItem.address}</td>
+                        <td>${orderItem.date}</td>
+                        <td><form action="${pageContext.request.contextPath}/do/update-status" method="post">
+                            <input type="hidden" name="orderId" value="${orderItem.id}">
+                            <select name="status" onclick="this.form.submit()">
+                                <c:choose>
+                                    <c:when test="${orderItem.status == 1}">
+                                        <option value="1">Доставлен</option>
+                                    </c:when>
+                                    <c:when test="${orderItem.status == 0}">
+                                        <option value="0">Не доставлен</option>
+                                    </c:when>
+                                </c:choose>
+                                        <option value="1">Доставлен</option>
+                                        <option value="0">Не доставлен</option>
+                            </select>
+                        </form></td></tr>
+<%--
+                    ${orderItem.status}
+--%>
                 </c:forEach>
             </table>
         </div>

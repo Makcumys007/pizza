@@ -13,6 +13,7 @@ public class OrderDAO {
     private static String SELECT_ALL = "SELECT * FROM `pizza`.`order`";
     private String INSERT_ORDER = "INSERT INTO `pizza`.`order`(`user_id`,`address`,`description`,`count`, `date`)VALUES(?,?,?,?,?)";
     private String SELECT_BY_ID = "SELECT * FROM `pizza`.`order` WHERE user_id = ";
+    private String UPDATE_STATUS = "UPDATE `pizza`.`order` SET status = ? WHERE id = ?";
     private String tmp;
     private Connection connection;
 
@@ -44,9 +45,6 @@ public class OrderDAO {
         List<Order> orders = new ArrayList<>();
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(SELECT_ALL)) {
-
-            System.out.println(SELECT_ALL);
-
             while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
@@ -63,9 +61,12 @@ public class OrderDAO {
                 address.setPhone(adr[4]);
                 order.setAddress(address);
 
+
+
                 order.setDate(rs.getDate("date"));
                 order.setDescription(rs.getString("description"));
                 order.setSize(rs.getInt("count"));
+                order.setStatus(rs.getInt("status"));
                 orders.add(order);
             }
         } catch (SQLException e) {
@@ -73,8 +74,6 @@ public class OrderDAO {
         }
         SELECT_ALL = tmp;
 
-
-        System.out.println(SELECT_ALL);
         return orders;
     }
 
@@ -100,7 +99,7 @@ public class OrderDAO {
 
     public void setParameter(String param) {
         if (param.equals("new")) {
-            SELECT_ALL = SELECT_ALL + " WHERE date like \'" + new Date(new java.util.Date().getTime()).toString() + "\'";
+            SELECT_ALL = SELECT_ALL + " WHERE date like \'" + new Date(new java.util.Date().getTime()).toString() + "\' AND status like 0";
         } else if (param.equals("delivered")) {
             SELECT_ALL = SELECT_ALL + " WHERE status like 1";
         }  else {
@@ -109,4 +108,13 @@ public class OrderDAO {
      }
 
 
+    public void updateStatus(int id, int status) {
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_STATUS)) {
+            ps.setInt(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("SQL error: " + e);
+        }
+    }
 }

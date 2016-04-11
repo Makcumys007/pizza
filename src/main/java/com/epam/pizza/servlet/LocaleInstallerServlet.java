@@ -21,6 +21,7 @@ public class LocaleInstallerServlet extends HttpServlet {
         refMap.put("update-user", "");
         refMap.put("edit-product", "");
         refMap.put("basket-action", "basket");
+        refMap.put("select-orders", "orders-control");
 
     }
 

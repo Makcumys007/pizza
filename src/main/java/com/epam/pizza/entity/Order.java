@@ -15,6 +15,7 @@ public class Order extends BaseEntity {
     private String description;
     private Money price = Money.parse("KZT 0.00");
     private Date date;
+    private int status;
 
     public Order() {
         if (products == null) {
@@ -92,6 +93,14 @@ public class Order extends BaseEntity {
 
     public Date getDate() {
         return date;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
