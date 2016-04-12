@@ -5,6 +5,8 @@ import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
 import com.epam.pizza.service.exception.ServiceException;
 import org.joda.money.Money;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 
 public class UserDAO implements EntityDAO<User> {
     private Connection connection = PizzaConnection.getConnection();
+    private final static Logger logger = LoggerFactory.getLogger(UserDAO.class);
     private final String SELECT_USER_BY_ID = "SELECT u.id, u.login, u.password, u.email, ur.role FROM user u INNER JOIN user_role ur WHERE ur.id = u.user_role AND u.id = ?";
     private final String SELECT_ALL_USERS = "SELECT u.id, u.login, u.email, u.password, ur.role FROM user u INNER JOIN user_role ur WHERE ur.id = u.user_role";
     private final String INSERT_USER = "INSERT INTO user(login, password, email, user_role) VALUES (?, ?, ?, ?)";
@@ -38,6 +41,7 @@ public class UserDAO implements EntityDAO<User> {
             }
 
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeConnection(connection);
@@ -62,6 +66,7 @@ public class UserDAO implements EntityDAO<User> {
                 user.setRole(rs.getString("ur.role"));
             }
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeResultSet(rs);
@@ -82,6 +87,7 @@ public class UserDAO implements EntityDAO<User> {
             preparedStatement.setInt(4, 2);
             preparedStatement.execute();
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeStatement(preparedStatement);
@@ -107,6 +113,7 @@ public class UserDAO implements EntityDAO<User> {
                 result.setRole(resultSet.getString("role"));
             }
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeResultSet(resultSet);
@@ -128,6 +135,7 @@ public class UserDAO implements EntityDAO<User> {
             preparedStatement.setInt(4, user.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeStatement(preparedStatement);
@@ -143,6 +151,7 @@ public class UserDAO implements EntityDAO<User> {
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeStatement(preparedStatement);

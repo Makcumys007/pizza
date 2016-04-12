@@ -5,12 +5,13 @@ import com.epam.pizza.entity.BankAccount;
 import com.epam.pizza.entity.BaseEntity;
 import com.epam.pizza.entity.Order;
 import org.joda.money.Money;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 
 public class BankDAO extends BaseEntity{
-
-
+    private final static Logger logger = LoggerFactory.getLogger(BankDAO.class);
     private String BANK_OPERATION = "UPDATE bank SET money = ? WHERE id = ?";
     private Connection connection = PizzaConnection.getConnection();
 
@@ -28,6 +29,7 @@ public class BankDAO extends BaseEntity{
                 res.setMoney(Money.parse("KZT " + rs.getString("money")));
             }
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw  new RuntimeException("SQL error:" + e);
         }
         return res;
@@ -57,8 +59,10 @@ public class BankDAO extends BaseEntity{
             try {
                 connection.rollback();
             } catch (SQLException e1) {
+                logger.error("SQL Rollback:" + e1);
                 throw new RuntimeException("Rollback: " + e);
             }
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
     }

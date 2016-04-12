@@ -4,6 +4,8 @@ import com.epam.pizza.connection.PizzaConnection;
 import com.epam.pizza.entity.Product;
 import com.epam.pizza.entity.User;
 import org.joda.money.Money;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletOutputStream;
 import java.io.InputStream;
@@ -15,6 +17,7 @@ public class ProductDAO implements EntityDAO<Product> {
     private String locale;
     private InputStream img;
     private Connection connection = PizzaConnection.getConnection();
+    private final static Logger logger = LoggerFactory.getLogger(ProductDAO.class);
     private final String UPDATE_PRODUCT = "UPDATE product SET title_ru_RU = ?, title_en_US = ?, description_ru_RU = ?, description_en_US = ?, price = ?, type = ?, img = ? WHERE id = ?";
     private final String UPDATE_IMG = "UPDATE product SET img = ? WHERE id = ?";
     private final String SELECT_ALL_PRODUCT = "SELECT * FROM product";
@@ -51,6 +54,7 @@ public class ProductDAO implements EntityDAO<Product> {
             }
 
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeConnection(connection);
@@ -74,6 +78,7 @@ public class ProductDAO implements EntityDAO<Product> {
             ps.execute();
 
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
     }
@@ -92,6 +97,7 @@ public class ProductDAO implements EntityDAO<Product> {
                         product.setPrice(Money.parse("KZT " + rs.getString("price")));
                     }
             } catch (SQLException e) {
+                logger.error("SQL error:" + e);
                 throw new RuntimeException("SQL error: " + e);
             }
 
@@ -121,6 +127,7 @@ public class ProductDAO implements EntityDAO<Product> {
             ps.execute();
 
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
     }
@@ -135,6 +142,7 @@ public class ProductDAO implements EntityDAO<Product> {
             }
 
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
         return is;
@@ -146,6 +154,7 @@ public class ProductDAO implements EntityDAO<Product> {
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         } finally {
             PizzaConnection.closeConnection(connection);

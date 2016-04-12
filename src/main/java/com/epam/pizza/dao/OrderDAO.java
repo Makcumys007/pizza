@@ -4,12 +4,15 @@ import com.epam.pizza.connection.PizzaConnection;
 import com.epam.pizza.entity.Address;
 import com.epam.pizza.entity.Order;
 import com.epam.pizza.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
 public class OrderDAO {
+    private final static Logger logger = LoggerFactory.getLogger(OrderDAO.class);
     private static String SELECT_ALL = "SELECT * FROM `pizza`.`order`";
     private String INSERT_ORDER = "INSERT INTO `pizza`.`order`(`user_id`,`address`,`description`,`count`, `date`)VALUES(?,?,?,?,?)";
     private String SELECT_BY_ID = "SELECT * FROM `pizza`.`order` WHERE user_id = ";
@@ -36,6 +39,7 @@ public class OrderDAO {
                 orders.add(order);
             }
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
         return orders;
@@ -61,8 +65,6 @@ public class OrderDAO {
                 address.setPhone(adr[4]);
                 order.setAddress(address);
 
-
-
                 order.setDate(rs.getDate("date"));
                 order.setDescription(rs.getString("description"));
                 order.setSize(rs.getInt("count"));
@@ -70,6 +72,7 @@ public class OrderDAO {
                 orders.add(order);
             }
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
         SELECT_ALL = tmp;
@@ -87,6 +90,7 @@ public class OrderDAO {
             ps.setDate(5, order.getDate());
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw  new RuntimeException("SQL error: " + e);
         }
     }
@@ -114,6 +118,7 @@ public class OrderDAO {
             ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
+            logger.error("SQL error:" + e);
             throw new RuntimeException("SQL error: " + e);
         }
     }

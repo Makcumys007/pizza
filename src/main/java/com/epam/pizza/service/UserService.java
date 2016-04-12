@@ -4,10 +4,14 @@ import com.epam.pizza.dao.UserDAO;
 import com.epam.pizza.entity.User;
 import com.epam.pizza.service.exception.ServiceException;
 import com.epam.pizza.util.Validation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServletRequest;
 
 
 public class UserService {
+    private final static Logger logger = LoggerFactory.getLogger(UserService.class);
     private HttpServletRequest req;
     private Validation validation;
     private UserDAO userDAO;
@@ -34,9 +38,11 @@ public class UserService {
                 return user;
             } else {
                 req.setAttribute("engaged", true);
+                logger.error("Such a user can not be created!");
                 throw new ServiceException("Such a user can not be created!");
             }
         } else {
+            logger.error("Incorrectly entered data!");
             throw new ServiceException("Incorrectly entered data!");
         }
     }
@@ -50,9 +56,11 @@ public class UserService {
             if(findUser.getPassword() != null && findUser.getPassword().equals(user.getPassword())){
                 return findUser;
             } else {
+                logger.error("Incorrectly entered data!");
                 throw new ServiceException("Incorrectly entered data!");
             }
         } else {
+            logger.error("Incorrectly entered data!");
             throw new ServiceException("Incorrectly entered data!");
         }
     }
@@ -66,6 +74,7 @@ public class UserService {
             return user;
         } else {
             req.setAttribute("validate", true);
+            logger.error("Incorrectly entered data!");
             throw new ServiceException("Incorrectly entered data!");
         }
     }
