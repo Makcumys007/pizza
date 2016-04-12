@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class UpdateProductAction implements Action {
-    private final static Logger logger = LoggerFactory.getLogger("info");
+    private final static Logger logger = LoggerFactory.getLogger(UpdateProductAction.class);
     private ActionResult result;
 
     public UpdateProductAction(String page) {

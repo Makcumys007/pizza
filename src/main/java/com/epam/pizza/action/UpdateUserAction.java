@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UpdateUserAction implements Action {
-    private final static Logger logger = LoggerFactory.getLogger("info");
+    private final static Logger logger = LoggerFactory.getLogger(UpdateUserAction.class);
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("update_user_id"));

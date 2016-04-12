@@ -1,7 +1,5 @@
 package com.epam.pizza.action;
 
-import com.epam.pizza.action.Action;
-import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.entity.Order;
 import com.epam.pizza.entity.User;
 
