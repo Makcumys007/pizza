@@ -5,11 +5,10 @@ import com.epam.pizza.action.ActionFactory;
 import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.entity.Order;
 import com.epam.pizza.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +17,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 public class FrontController extends HttpServlet {
+    private final static Logger logger = LoggerFactory.getLogger(FrontController.class);
     private ActionFactory factory;
     @Override
     public void init() throws ServletException {
@@ -28,13 +28,14 @@ public class FrontController extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
+        logger.info("User session open!");
         if (user == null) {
             user = new User("guest");
             req.getSession(false).setAttribute("user", user);
         } else {
             req.getSession(false).setAttribute("user", user);
         }
-
+        logger.info("Order session open!");
         Order order = (Order) session.getAttribute("order");
         if (order == null) {
             order = new Order();
@@ -48,13 +49,17 @@ public class FrontController extends HttpServlet {
         Action action = factory.getAction(req);
         ActionResult res = action.execute(req, resp);
         doForwardOrRedirect(res, req, resp);
+
+
     }
 
     private void doForwardOrRedirect(ActionResult result, HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         if (result.isRedirect()) {
+            logger.info("Redirect: " + result.getView());
             resp.sendRedirect(result.getView());
         } else {
             String path = "/WEB-INF/jsp/" + result.getView() + ".jsp";
+            logger.info("Forward: " + path);
             req.getRequestDispatcher(path).forward(req, resp);
         }
     }
