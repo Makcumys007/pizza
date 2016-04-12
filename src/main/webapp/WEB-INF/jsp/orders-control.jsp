@@ -135,9 +135,7 @@
                                         <option value="0">Не доставлен</option>
                             </select>
                         </form></td></tr>
-<%--
-                    ${orderItem.status}
---%>
+
                 </c:forEach>
             </table>
         </div>

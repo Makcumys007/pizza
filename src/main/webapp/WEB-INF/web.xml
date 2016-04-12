@@ -7,10 +7,7 @@
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.epam.pizza.servlet.FrontController</servlet-class>
-        <!--
-        @MultipartConfig(location="/tmp", fileSizeThreshold=1024*1024,
-        maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
-        -->
+
         <multipart-config>
             <max-file-size>5000000</max-file-size>
             <max-request-size>8000000</max-request-size>
@@ -27,11 +24,29 @@
         <servlet-name>LocaleInstallerServlet</servlet-name>
         <servlet-class>com.epam.pizza.servlet.LocaleInstallerServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>LocaleInstallerServlet</servlet-name>
         <url-pattern>/locale/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ExceptionHandlerServlet</servlet-name>
+        <servlet-class>com.epam.pizza.servlet.ExceptionHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExceptionHandlerServlet</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error</location>
+    </error-page>
+    
+
 
     <filter>
         <filter-name>SetCharacterEncodingFilter</filter-name>
@@ -39,12 +54,13 @@
     </filter>
 
 
+
+
     <filter-mapping>
         <filter-name>SetCharacterEncodingFilter</filter-name>
         <url-pattern>/do/*</url-pattern>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
-        <!--<servlet-name>Controller</servlet-name>-->
     </filter-mapping>
 
     <resource-ref>
