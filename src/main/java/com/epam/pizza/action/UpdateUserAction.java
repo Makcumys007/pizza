@@ -1,14 +1,15 @@
-package com.epam.pizza.action.page;
+package com.epam.pizza.action;
 
-import com.epam.pizza.action.Action;
-import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.dao.UserDAO;
 import com.epam.pizza.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UpdateUserAction implements Action {
+    private final static Logger logger = LoggerFactory.getLogger("info");
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("update_user_id"));
@@ -18,6 +19,7 @@ public class UpdateUserAction implements Action {
         user.setRole(newRole);
         userDAO = new UserDAO();
         userDAO.updateEntity(user);
+        logger.info("User update!");
         return new UsersControlAction("users-control").execute(req, resp);
     }
 }

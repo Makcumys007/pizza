@@ -1,22 +1,24 @@
-package com.epam.pizza.action.page;
+package com.epam.pizza.action;
 
-import com.epam.pizza.action.Action;
-import com.epam.pizza.action.ActionResult;
+import com.epam.pizza.entity.User;
 import com.epam.pizza.service.UserService;
 import com.epam.pizza.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ProfileAction implements Action {
+public class LoginAction implements Action {
+
     @Override
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+
         UserService userService = new UserService(req);
         try {
-            userService.getUpdateUser();
-            return new LogoutAction().execute(req, resp);
+            User user = userService.getLoginUser();
+            req.getSession(false).setAttribute("user", user);
         } catch (ServiceException e) {
-            return new ShowPageAction("profile").execute(req, resp);
+            req.setAttribute("validate", true);
         }
+        return new HomeAction("home").execute(req, resp);
     }
 }

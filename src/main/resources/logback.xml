@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="FILE_INFO" class="ch.qos.logback.core.FileAppender">
-        <file>pizza-info-log.log</file>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${HOME}/pizza-error.log</file>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </layout>
     </appender>
-    <appender name="FILE_ERROR" class="ch.qos.logback.core.FileAppender">
-        <file>pizza-error-log.log</file>
+    <appender name="INFO" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </layout>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="FILE_INFO"/>
+    <logger name="info" level="info">
+        <appender-ref ref="INFO" />
+    </logger>
+    <root level="debug">
+        <appender-ref ref="FILE" />
     </root>
-    <root level="error">
-        <appender-ref ref="FILE_ERROR"/>
-    </root>
+
 </configuration>

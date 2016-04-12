@@ -1,7 +1,4 @@
-package com.epam.pizza.action.page;
-
-import com.epam.pizza.action.Action;
-import com.epam.pizza.action.ActionResult;
+package com.epam.pizza.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

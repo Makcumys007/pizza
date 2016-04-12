@@ -1,4 +1,4 @@
-package com.epam.pizza.action.page;
+package com.epam.pizza.action;
 
 import com.epam.pizza.action.Action;
 import com.epam.pizza.action.ActionResult;

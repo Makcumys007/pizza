@@ -1,10 +1,10 @@
-package com.epam.pizza.action.page;
+package com.epam.pizza.action;
 
-import com.epam.pizza.action.Action;
-import com.epam.pizza.action.ActionResult;
 import com.epam.pizza.dao.ProductDAO;
 import com.epam.pizza.entity.Product;
 import org.joda.money.Money;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class UpdateProductAction implements Action {
+    private final static Logger logger = LoggerFactory.getLogger("info");
     private ActionResult result;
 
     public UpdateProductAction(String page) {
@@ -45,9 +46,12 @@ public class UpdateProductAction implements Action {
 
             productDAO.close();
             is.close();
+            logger.info("Update product!");
         } catch (IOException e) {
+            logger.debug("Error closing connection: " + e);
             throw new RuntimeException("Error closing connection: " + e);
         } catch (ServletException e) {
+            logger.debug("Servlet error: " + e);
             throw new RuntimeException("Servlet error: " + e);
         }
         return result;

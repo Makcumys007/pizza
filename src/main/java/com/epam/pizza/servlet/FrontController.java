@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 public class FrontController extends HttpServlet {
-    private final static Logger logger = LoggerFactory.getLogger(FrontController.class);
+
     private ActionFactory factory;
     @Override
     public void init() throws ServletException {
@@ -28,14 +28,14 @@ public class FrontController extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        logger.info("User session open!");
+
         if (user == null) {
             user = new User("guest");
             req.getSession(false).setAttribute("user", user);
         } else {
             req.getSession(false).setAttribute("user", user);
         }
-        logger.info("Order session open!");
+
         Order order = (Order) session.getAttribute("order");
         if (order == null) {
             order = new Order();

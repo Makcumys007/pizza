@@ -1,12 +1,14 @@
 package com.epam.pizza.action;
 
-import com.epam.pizza.action.page.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ActionFactory {
+    private static final Logger logger = LoggerFactory.getLogger(ActionFactory.class);
     private Map<String, Action> actions;
 
     public ActionFactory() {
@@ -45,7 +47,7 @@ public class ActionFactory {
 
     public Action getAction(HttpServletRequest req) {
         String key = req.getMethod() + req.getPathInfo();
-        System.out.println(key);
+        logger.info(key);
         return actions.get(key);
     }
 
