@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 
-public class BankDAO extends BaseEntity{
+public class BankDAO extends BaseEntity {
     private final static Logger logger = LoggerFactory.getLogger(BankDAO.class);
     private String BANK_OPERATION = "UPDATE bank SET money = ? WHERE id = ?";
     private Connection connection = PizzaConnection.getConnection();
@@ -18,8 +18,13 @@ public class BankDAO extends BaseEntity{
     public BankAccount findBankAccountAccount(BankAccount account) {
         BankAccount res = new BankAccount();
         try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery("SELECT * FROM bank WHERE number = " +
-                     account.getNumber() + " and time = " + account.getTime() + " and cvv = " + account.getCvv())) {
+             ResultSet rs = st.executeQuery(
+                     "SELECT * FROM bank WHERE number = "
+                             + account.getNumber()
+                             + " and time = "
+                             + account.getTime()
+                             + " and cvv = "
+                             + account.getCvv())) {
 
             while (rs.next()) {
                 res.setId(rs.getInt("id"));
@@ -30,7 +35,7 @@ public class BankDAO extends BaseEntity{
             }
         } catch (SQLException e) {
             logger.error("SQL error:" + e);
-            throw  new RuntimeException("SQL error:" + e);
+            throw new RuntimeException("SQL error:" + e);
         }
         return res;
     }
@@ -70,7 +75,6 @@ public class BankDAO extends BaseEntity{
     public void close() {
         PizzaConnection.closeConnection(connection);
     }
-
 
 
 }
